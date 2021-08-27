@@ -1,0 +1,43 @@
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+html,body{
+  line-height: 1.5;
+  position: relative;
+  scroll-behavior: smooth;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family:'Montserrat-bold',sans-serif;
+  font-size: 36px;
+  font-weight:700;
+  color: #FFFFFF;
+  line-height: 1.7;
+  text-transform: uppercase;
+
+}
+header,main,section,footer{
+ height: 100%;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+  &:active {
+    color: #000000;
+  }
+}
+  li{list-style: none;}
+
+ button{
+   border: none;
+   cursor: pointer;
+   &:active{
+       border-style: none;
+   }
+ }
