@@ -1,19 +1,24 @@
 
 @font-face {
   font-family:'Montserrat-BL';
-  src: url("../../assets/fonts/Montserrat-Black.ttf") format('ttf');
+  src: url("../../assets/fonts/Montserrat-Black.ttf") ;
+  src: url("../../assets/fonts/Montserrat-Black.ttf") format('ttf'),
+       url('../../assets/fonts/Montserrat-Black.otf') format('otf');
 }
 
 @font-face {
 font-family: 'Montserrat';
-src: url("../../assets/fonts/Montserrat-Regular.ttf") format('ttf');
+src: url("../../assets/fonts/Montserrat-Regular.ttf") format('ttf'),
+     url("../../assets/fonts/Montserrat-Regular.otf") format('otf');
 }
 @font-face {
   font-family: 'Montserrat-Semibold';
-  src: url("../../assets/fonts/Montserrat-SemiBold.ttf") format('ttf');
+  src: url("../../assets/fonts/Montserrat-SemiBold.ttf") format('ttf'),
+       url("../../assets/fonts/Montserrat-SemiBold.otf") format('otf');
 }
 @font-face {
 font-family: 'Montserrat-bold';
-src: url("../../assets/fonts/Montserrat-ExtraBold.ttf") format('ttf');
+src: url("../../assets/fonts/Montserrat-ExtraBold.ttf") format('ttf'),
+     url("../../assets/fonts/Montserrat-ExtraBold.otf") format('otf');
 
 }

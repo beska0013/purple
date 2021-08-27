@@ -10,7 +10,7 @@
   100%{transform: translate(0, 20px);}
 }
 
- @keyframes scrollDownFadeOut {
+@keyframes scrollDownFadeOut {
    to{
      transform:translate(70rem, 0) scale(.5);
      opacity:0;
