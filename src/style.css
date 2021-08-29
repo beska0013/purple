@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +10,7 @@ html, body {
   line-height: 1.5;
   position: relative;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,23 +48,6 @@ button:active {
   border-style: none;
 }
 
-@font-face {
-  font-family: "Montserrat-BL";
-  src: url("../../assets/fonts/Montserrat-Black.ttf");
-  src: url("../../assets/fonts/Montserrat-Black.ttf") format("ttf"), url("../../assets/fonts/Montserrat-Black.otf") format("otf");
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("../../assets/fonts/Montserrat-Regular.ttf") format("ttf"), url("../../assets/fonts/Montserrat-Regular.otf") format("otf");
-}
-@font-face {
-  font-family: "Montserrat-Semibold";
-  src: url("../../assets/fonts/Montserrat-SemiBold.ttf") format("ttf"), url("../../assets/fonts/Montserrat-SemiBold.otf") format("otf");
-}
-@font-face {
-  font-family: "Montserrat-bold";
-  src: url("../../assets/fonts/Montserrat-ExtraBold.ttf") format("ttf"), url("../../assets/fonts/Montserrat-ExtraBold.otf") format("otf");
-}
 @keyframes circles-rotate {
   to {
     transform: rotate(360deg);
@@ -79,40 +64,6 @@ button:active {
     transform: translate(0, 20px);
   }
 }
-@keyframes scrollDownFadeOut {
-  to {
-    transform: translate(70rem, 0) scale(0.5);
-    opacity: 0;
-  }
-}
-@keyframes bounceInUp {
-  0%, 60%, 75%, 90%, 100% {
-    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  0% {
-    -webkit-transform: translate3d(0, 3000px, 0);
-    transform: translate3d(0, 3000px, 0);
-    visibility: visible;
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translate3d(0, -20px, 0);
-    transform: translate3d(0, -20px, 0);
-  }
-  75% {
-    -webkit-transform: translate3d(0, 10px, 0);
-    transform: translate3d(0, 10px, 0);
-  }
-  90% {
-    -webkit-transform: translate3d(0, -5px, 0);
-    transform: translate3d(0, -5px, 0);
-  }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
 h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
   color: #9614BB;
   display: inline-block;
@@ -123,26 +74,21 @@ h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
   width: 100%;
 }
 
-.scrollDown-fadeOut {
-  animation: scrollDownFadeOut 0.5s ease-out forwards;
-}
-
-.body-height {
-  height: 5000px;
-}
-
-.el-fixed {
-  position: fixed;
-  top: 0;
+.nav-bar_mob-open {
+  clip-path: circle(100% at 50% 50%) !important;
+  transition: all 0.3s ease-in-out;
+  bottom: 0 !important;
+  right: 0 !important;
 }
 
 header {
-  height: 70px;
-  min-height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  transition: top 0.1s ease-in-out;
+  height: 70px;
+  min-height: 70px;
   position: fixed;
   top: 0;
   z-index: 5;
@@ -169,20 +115,20 @@ header nav .logo img {
   height: 100%;
 }
 header nav .nav-bar {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease-in-out;
   align-items: flex-end !important;
   overflow: hidden;
   position: fixed;
   bottom: 24px;
   right: 24px;
-  border-radius: 50%;
   background-color: #9614BB;
+  clip-path: circle(1% at 100% 100%);
 }
 header nav .nav-bar ul {
   display: flex;
@@ -190,19 +136,14 @@ header nav .nav-bar ul {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  position: absolute;
-  left: -261px;
-  transition: left 0.3s linear;
 }
 header nav .nav-bar ul li {
   width: 100%;
   margin: 0.75rem 0;
-  opacity: 0;
-  transition: opacity 0.3s linear;
 }
 header nav .nav-bar ul li:hover a {
   color: #ffffff5e;
-  transition: color 0.3s linear;
+  transition: color 0.3s ease-in-out;
 }
 header nav .nav-bar ul li a {
   font-family: "Montserrat-bold", sans-serif;
@@ -211,7 +152,7 @@ header nav .nav-bar ul li a {
   color: #ffffff;
   text-transform: capitalize;
   line-height: 1.7;
-  transition: color 0.3s linear;
+  transition: color 0.3s ease-in-out;
 }
 
 main section {
@@ -275,20 +216,21 @@ main .bg1 .bg1__text h1 span::after {
   color: #FFFFFF;
 }
 main .bg1 .circle-image {
+  transition: all 0.3s ease-in-out;
+  width: 357px;
+  height: 357px;
   background-image: url("./assets/img/img_1.png");
   background-repeat: no-repeat;
   background-size: cover;
   -o-background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
-  background-position: center;
-  width: 357px;
-  height: 357px;
-  border-radius: 50%;
+  background-position: 50% 0;
   position: absolute;
   overflow: hidden;
-  top: 513px;
-  left: -111px;
+  clip-path: circle(58.5% at 24% 74%);
+  bottom: 0;
+  left: 0;
 }
 main .bg1 .circle-image .circle-image__overlay {
   position: absolute;
@@ -303,6 +245,7 @@ main .bg1 .circle-image img {
 main .bg1 .circle-scroll {
   width: 10.67708333vw;
   height: 10.67708333vw;
+  transition: all 0.3s ease-in-out;
   display: none;
   border-radius: 50%;
   border: 2px solid #5F356D;
@@ -336,8 +279,8 @@ main .bg1 .pop-up__container {
   width: 100%;
   left: 0;
   bottom: 76px;
-  opacity: 0;
-  visibility: hidden;
+  transform: translate(0, 500px);
+  transition: transform 0.3s ease-in-out;
 }
 main .bg1 .pop-up__container .pop-up {
   width: 100%;
@@ -369,12 +312,6 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
   max-width: 510px;
 }
 
-.pop-up_top {
-  opacity: 1 !important;
-  visibility: visible !important;
-  animation: bounceInUp 1s forwards;
-}
-
 .btn {
   height: 40px;
   width: 132px;
@@ -396,11 +333,11 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
 }
 
 .btn-close-mob_menu .burger-menu {
-  transition: background-color 0.3s linear;
+  transition: background-color 0.3s ease-in-out;
   background-color: #ffffff !important;
 }
 .btn-close-mob_menu .burger-menu span {
-  transition: all 0.3s linear;
+  transition: all 0.3s ease-in-out;
   border: 1px solid #1A121D !important;
 }
 .btn-close-mob_menu .burger-menu span:nth-child(1) {
@@ -416,23 +353,6 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
 }
 .btn-close-mob_menu .burger-menu span:nth-child(odd) {
   width: 9px !important;
-}
-
-.nav-bar_mob-open {
-  width: 100% !important;
-  height: 100% !important;
-  transition: all 0.3s linear;
-  border-radius: 0 !important;
-  bottom: 0 !important;
-  right: 0 !important;
-}
-.nav-bar_mob-open ul {
-  left: 0 !important;
-  transition: left 0.3s linear;
-}
-.nav-bar_mob-open ul li {
-  opacity: 1 !important;
-  transition: opacity 0.3s linear;
 }
 
 .btn-mob_menu {
@@ -458,13 +378,13 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s linear;
+  transition: background-color 0.3s ease-in-out;
   background-color: #9614BB;
   border-radius: 50%;
   padding: 0.78rem;
 }
 .btn-mob_menu .burger-menu span {
-  transition: all 0.3s linear;
+  transition: all 0.3s ease-in-out;
   height: 1px;
   width: 19px;
   background-color: #ffffff;
@@ -592,11 +512,11 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
   header nav .nav-bar {
     width: max-content;
     height: max-content;
-    transition: none 0 linear;
     align-items: center !important;
     position: static;
     border-radius: 0;
     background-color: transparent;
+    clip-path: none;
   }
   header nav .nav-bar ul {
     display: flex;
@@ -605,13 +525,12 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
     align-items: center;
     padding: 0;
     position: static;
-    transition: left 0.3s linear;
+    transition: left 0.3s ease-in-out;
   }
   header nav .nav-bar ul li {
     display: inline-block;
     width: max-content;
     margin: 0 1.25rem;
-    opacity: 1;
     cursor: pointer;
   }
   header nav .nav-bar ul li:last-child {
@@ -620,7 +539,7 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
   header nav .nav-bar ul li a {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     color: #ffffff;
     line-height: 1.5;
     letter-spacing: 1px;
@@ -649,7 +568,7 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
     padding: 0 4.28vw;
   }
   main .bg1 .pop-up__container .pop-up {
-    width: 64%;
+    width: 75%;
   }
   main .bg1 .pop-up__container .pop-up .pop-up__text h6 {
     font-size: 40px;
@@ -704,8 +623,6 @@ main .bg1 .pop-up__container .pop-up .pop-up__buttons {
   main .bg1 .circle-image {
     width: 53.125vw;
     height: 53.125vw;
-    top: 13.4375vw;
-    left: -193px;
   }
 }
 

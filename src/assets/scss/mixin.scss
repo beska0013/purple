@@ -72,5 +72,5 @@
 }
 
 @mixin transition($name,$time){
-  transition: $name $time linear;
+  transition: $name $time ease-in-out;
 }

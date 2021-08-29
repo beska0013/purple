@@ -13,22 +13,20 @@ h1,h2,h3,h4,h5,h6{
   height:5000px;
   width:100%;
 }
+.nav-bar_mob-open{
+  clip-path: circle(100% at 50% 50%)!important;
+  @include transition(all,.3s);
+  bottom: 0!important;
+  right: 0!important;
+}
 
-.scrollDown-fadeOut{
-  animation: scrollDownFadeOut .5s ease-out forwards;
-}
-.body-height{
-  height: 5000px;
-}
-.el-fixed{
-  position: fixed;
-  top:0;
-}
+
 
 header{
+  @include flex(center);
+  @include  transition(top,.1s);
   height: 70px;
   min-height: 70px;
-  @include flex(center);
   position: fixed;
   top: 0;
   z-index: 5;
@@ -45,7 +43,7 @@ header{
       }
     }
     .nav-bar{
-      @include square (30px);
+      @include square (100%);
       @include flex(between);
       @include transition(all,.3s);
       align-items: flex-end!important;
@@ -53,19 +51,14 @@ header{
       position: fixed;
       bottom: 24px;
       right: 24px;
-      border-radius: 50%;
       background-color: $purple;
+      clip-path: circle(1% at 100% 100%);
       ul{
         @include flex(center,column);
         padding:1rem;
-        position: absolute;
-        left:-261px;
-        @include transition(left,.3s);
         li{
           width: 100%;
           margin:.75rem 0;
-          opacity: 0;
-          @include transition(opacity,.3s);
           &:hover a{
             color:#ffffff5e;
             @include transition(color,.3s);
@@ -131,14 +124,15 @@ section{padding: 0 4.28vw;}
       }
     }
     .circle-image{
-      @include bg('./assets/img/img_1.png',cover);
-      background-position: center;
+      @include transition(all,.3s);
       @include square(357px);
-      border-radius: 50%;
+      @include bg('./assets/img/img_1.png',cover);
+      background-position: 50% 0;
       position: absolute;
       overflow: hidden;
-      top: 513px;
-      left: -111px;
+      clip-path: circle(58.5% at 24% 74%);
+      bottom:0;
+      left:0;
       .circle-image__overlay{
         position:absolute;
         @include square(100%);
@@ -150,6 +144,7 @@ section{padding: 0 4.28vw;}
     }
     .circle-scroll{
       @include square(10.67708333vw);
+      @include transition(all,.3s);
       display: none;
       border-radius: 50%;
       border: 2px solid #5F356D;
@@ -175,8 +170,9 @@ section{padding: 0 4.28vw;}
       width: 100%;
       left: 0;
       bottom: 76px;
-      opacity: 0;
-      visibility:hidden;
+      transform: translate(0, 500px);
+      @include transition(transform, .3s);
+
 
       .pop-up{
         width: 100%;
@@ -206,11 +202,7 @@ section{padding: 0 4.28vw;}
   }
 }
 
-.pop-up_top{
-  opacity: 1!important;
-  visibility: visible!important;
-  animation: bounceInUp 1s forwards;
-}
+
 .btn{
   @include size(40px,132px);
   @include min-size(40px,132px);
@@ -247,21 +239,7 @@ section{padding: 0 4.28vw;}
   }
 }
 
-.nav-bar_mob-open{
-  @include square (100%!important);
-  @include transition(all,.3s);
-  border-radius: 0!important;
-  bottom: 0!important;
-  right: 0!important;
-  ul{
-    left:0!important;
-    @include transition(left,.3s);
-    li{
-      opacity: 1!important;
-      @include transition(opacity,.3s);
-    }
-  }
-}
+
 
 .btn-mob_menu{
   @include square(76px);
@@ -406,11 +384,11 @@ section{padding: 0 4.28vw;}
     nav{
       .nav-bar{
         @include square (max-content);
-        @include transition(none,0);
         align-items: center!important;
         position: static;
         border-radius: 0;
         background-color: transparent;
+        clip-path: none;
         ul{
           @include flex(between,row);
           padding: 0;
@@ -420,14 +398,12 @@ section{padding: 0 4.28vw;}
             display: inline-block;
             width: max-content;
             margin: 0 1.25rem;
-            opacity: 1;
             cursor: pointer;
-            //@include transition(opacity);
             &:last-child{
               display:none;
             }
             a{
-              @include font('Montserrat',16px,600,#ffffff);
+              @include font('Montserrat',16px,400,#ffffff);
               line-height: 1.5;
               letter-spacing: 1px;
             }
@@ -456,7 +432,7 @@ section{padding: 0 4.28vw;}
         padding: 0 4.28vw;
 
         .pop-up{
-          width: 64%;
+          width: 75%;
           .pop-up__text{
             h6{
               font-size: 40px;
@@ -509,8 +485,6 @@ section{padding: 0 4.28vw;}
       }
       .circle-image{
         @include square(53.125vw);
-        top: 13.4375vw;
-        left: -193px;
       }
     }
   }

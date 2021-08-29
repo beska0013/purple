@@ -1,6 +1,6 @@
-// document force scrollToTop on reload
-history.scrollRestoration ? history.scrollRestoration = 'manual':
-    window.onbeforeunload =  ()=> window.scrollTo(0, 0);
+
+
+
 
 //--mob-menu animation--//
 
@@ -21,79 +21,53 @@ function addleClass(el,elStyle) {
 }
 //--add new bgColor class--//
 
-//--setion one image scroll--//
-const scrollDownCircle = document.querySelector('.circle-scroll');
-const secOne = document.querySelector('.bg1');
-const headerTag = document.querySelector('header');
-const img = document.getElementById('secOneImg');
-const secOnePopUp = document.getElementById('secOnePopUp')
-let size = 0;
-const mainTag = document.getElementById('mainTag')
-let windowWidth = Math.max(
-    document.body.scrollWidth, document.documentElement.scrollWidth,
-    document.body.offsetWidth, document.documentElement.offsetWidth,
-    document.body.clientWidth, document.documentElement.clientWidth
-);
-let imgWidth = Math.max(
-    img.scrollWidth, img.scrollWidth,
-    img.offsetWidth, img.offsetWidth,
-    img.clientWidth, img.clientWidth
-);
-let secOneHeight = Math.max(
-    secOne.scrollHeight, secOne.scrollHeight,
-    secOne.offsetHeight, secOne.offsetHeight,
-    secOne.clientHeight, secOne.clientHeight
-);
+//--setion one gsapAnimatiom image scroll--//
 
-
-const imgContainerVw = (imgWidth/windowWidth) * 100;
-const secOneVh = (secOneHeight/windowWidth) * 100;
-const windoVW = (windowWidth/windowWidth)*100
-
-function imgOnScroll(){
-    size++
-    let imgCurrentSize = imgContainerVw + size
-    scrollDownCircle.classList.add('scrollDown-fadeOut')
-
-    img.style.transition ='all .5s ease-in-out'
-    img.style.height =`${imgCurrentSize}` + 'vw'
-    img.style.width =  `${imgCurrentSize}` + 'vw'
-
-    if(imgCurrentSize >= secOneVh){
-        img.style.borderRadius ='0% 50% 50% 0%';
-        img.style.transform = 'translate(0, 0) scale(1.1)'
+const timeline = gsap.timeline(
+    {
+        // default:{duration: 10},
+        smoothChildTiming:true,
+        scrollTrigger:{
+            trigger: '.bg1',
+            start:'top',
+            end:'bottom',
+            scrub: true,
+            pin: true,
+            animation: 'tween',
+            smoothChildTiming: true
+        }
     }
+)
 
-    if(imgCurrentSize >= windoVW){
-        img.style.height = `${secOneHeight }`+'px'
-        img.style.transform = 'translate(0, 0) scale(1.1)'
-        img.style.width ='100vw'
-        img.style.borderRadius ='0';
-        // window.scrollTo(0, 0);
-        document.body.classList.remove('body-height');
+timeline
+    .to('.circle-scroll',{
+        scale:0.5,
+        opacity:0
+    },0.1)
+    .to('.circle-image',{
+        duration: 2.5,
+        height:'100%',
+        width:'100%'
+    })
+    .to('.circle-image',{
+        clipPath:' circle(80% at 31% 74%)',
+        width:'100%'
+    })
+    .to('.circle-image',{
+        clipPath:' circle(100% at 50% 74%)',
+    })
+    .to('.pop-up__container',{
+        y:-100,
+        ease:'bounce.out',
+        })
+    .to('.pop-up__container',{
+        y:0,
+        ease:'bounce.out',
+    })
+    .to('header',{
+        top:'-94px'
+    }, '+=1')
 
-        window.removeEventListener('scroll',imgOnScroll)
-        secOnereset(1000,100)
-    }
 
-    if(windowWidth >= 1920 && imgCurrentSize > 78 ){
-        img.style.borderRadius ='0';
-        img.style.width ='100vw'
-        img.style.height = `${secOneHeight }`+'px'
 
-    }
-}
-
-window.addEventListener('scroll',imgOnScroll)
-function secOnereset(time1,time2){
-    setTimeout(()=> {
-        addleClass(secOnePopUp,'pop-up_top')
-        window.scrollTo(0, 0);
-        setTimeout(()=>{
-            headerTag.style.position = 'absolute'
-            mainTag.classList.remove('el-fixed');
-        },time1)
-    },time2)
-}
-
-//--setion one image scroll--//
+//--setion one gsapAnimatiom image scroll--//
