@@ -53,6 +53,11 @@ button:active {
   border-style: none;
 }
 
+img, svg {
+  height: 100%;
+  width: 100%;
+}
+
 @keyframes circles-rotate {
   to {
     transform: rotate(360deg);
@@ -122,10 +127,6 @@ header nav .logo {
   min-width: 100px;
   max-height: 45px;
   max-width: 190px;
-}
-header nav .logo img {
-  width: 100%;
-  height: 100%;
 }
 header nav .nav-bar {
   width: 100%;
@@ -232,7 +233,7 @@ main .bg1 .circle-image {
   background-position: 50% 0;
   position: absolute;
   overflow: hidden;
-  clip-path: circle(50% at 24% 74%);
+  clip-path: circle(62% at 24% 74%);
   bottom: 0;
   left: 0;
 }
@@ -245,6 +246,8 @@ main .bg1 .circle-image .circle-image__overlay {
 main .bg1 .circle-scroll {
   width: 10.67708333vw;
   height: 10.67708333vw;
+  max-width: 205px;
+  max-height: 205px;
   display: none;
   border-radius: 50%;
   border: 2px solid #5F356D;
@@ -279,7 +282,6 @@ main .bg1 .pop-up__container {
   left: 0;
   bottom: 76px;
   transform: translate(0, 500px);
-  transition: transform 0.5s ease-in-out;
 }
 main .bg1 .pop-up__container .title {
   width: 85vw;
@@ -1711,7 +1713,7 @@ footer .footer .social-links ul li a svg {
     justify-content: flex-end;
     align-items: center;
     bottom: -4px;
-    padding: 0 4.28vw;
+    padding: 0 6.3vw;
   }
   main .bg1 .pop-up__container .pop-up {
     width: 91%;
@@ -1819,6 +1821,7 @@ footer .footer .social-links ul li a svg {
 @media screen and (min-width: 1920px) {
   main .bg1 .bg1__text h1 {
     font-size: 80px;
+    max-width: 1083px;
   }
   main .bg1 .circle-scroll {
     display: flex;
@@ -1837,11 +1840,11 @@ footer .footer .social-links ul li a svg {
   }
   main .bg1 .pop-up__container .pop-up {
     width: 91%;
-    max-width: 59vw;
+    max-width: 1030px;
   }
   main .bg1 .circle-image {
-    width: 53.125%;
     height: 94.445%;
+    width: 53.125%;
   }
   main .cards {
     height: 33.29vw;

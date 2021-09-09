@@ -37,14 +37,13 @@ const secOne = gsap.timeline(
         scrollTrigger:{
             trigger: '.bg1',
             start:'top',
-            end:'+=3000',
+            end:'+=2000',
             scrub: 1,
             pin: true,
         },
 
     }
 )
-
 secOne
     .to('.circle-image',{
         duration:3.5,
@@ -61,41 +60,19 @@ secOne
         clipPath:'circle(108% at 24% 74%)',
         ease: "power4.out"
     },'<.5')
-    // .to('.circle-image',{
-    //     duration:2.5,
-    //     clipPath:'circle(72% at 24% 74%)',
-    //     ease: "power4.out"
-    // },'<.5')
-    // .to('.circle-image',{
-    //     duration:2.5,
-    //     clipPath:'circle(84% at 24% 74%)',
-    //     ease: "power4.out"
-    // },'<.5')
-    // .to('.circle-image',{
-    //     duration:2.5,
-    //     clipPath:'circle(94% at 24% 74%)',
-    //     ease: "power4.out"
-    // },'<.5')
-    // .to('.circle-image',{
-    //     duration:2.5,
-    //     clipPath:'circle(108% at 24% 74%)',
-    //     ease: "power4.out"
-    // },'<.5')
-
     .to('.pop-up__container',{
-        y:-100,
-        ease:'bounce.out',
+        duration:1.5,
+        y:'-50px',
+        ease: "power4.out"
         })
     .to('.pop-up__container',{
+        duration:.5,
         y:0,
-        ease:'bounce.out',
+        ease:"power4.out"
     })
     .to('header',{
         top:'-94px'
     }, '+=1')
-
-
-
 //--setion one gsapAnimatiom image scroll end--//
 
 //-- section two--//
@@ -103,16 +80,13 @@ const secTwoSlider = gsap.timeline(
     {
         scrollTrigger:{
             trigger:'#secTwo',
-            autoAlpha: 0,
-            scrub: 1,
-            animation: 'tween',
-            smoothChildTiming: true
+            scrub: 1.5,
         }
     }
 )
 secTwoSlider
-    .to('#firstRow ul', {x:'-1844px'},'start')
-    .to('#secondRow ul', {x: '0px'}, 'start')
+    .to('#firstRow ul', {x:'-1844px',duration:2.5},'start')
+    .to('#secondRow ul', {x: '0px', duration:2.5}, 'start')
 
 
 const secTwofadeIn = fade('#secTwo','top 30%','top -10%')

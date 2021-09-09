@@ -42,9 +42,6 @@ header{
       @include size(25px,100px);
       @include min-size(25px,100px);
       @include max-size(45px,190px);
-      img{
-        @include square(100%);
-      }
     }
     .nav-bar{
       @include square (100%);
@@ -83,7 +80,6 @@ main{
 .container{padding: 0 4.28vw;}
   .bg1{
     @include bg('./assets/img/bg1.png',cover);
-    //background-color:#1A121D;
     position: relative;
     left: unset!important;
     overflow: hidden;
@@ -126,7 +122,7 @@ main{
       background-position: 50% 0;
       position: absolute;
       overflow: hidden;
-      clip-path: circle(50% at 24% 74%);
+      clip-path: circle(62% at 24% 74%);
       bottom:0;
       left:0;
       .circle-image__overlay{
@@ -137,6 +133,7 @@ main{
     }
     .circle-scroll{
       @include square(10.67708333vw);
+      @include max-square(205px);
       display: none;
       border-radius: 50%;
       border: 2px solid #5F356D;
@@ -163,7 +160,6 @@ main{
       left: 0;
       bottom: 76px;
       transform: translate(0, 500px);
-      @include transition(transform, .5s);
       .title {
         width: 85vw;
         min-width: 287px;
@@ -1338,7 +1334,7 @@ footer{
       .pop-up__container{
         @include flex(end);
         bottom: -4px;
-        padding: 0 4.28vw;
+        padding: 0 6.3vw;
 
         .pop-up{
           width: 91%;
@@ -1431,7 +1427,10 @@ footer{
   main{
     .bg1{
       .bg1__text{
-        h1{font-size: 80px;}
+        h1{
+          font-size: 80px;
+          max-width: 1083px;
+        }
       }
       .circle-scroll{
         @include  flex(center);
@@ -1449,14 +1448,10 @@ footer{
       .pop-up__container{
         .pop-up{
           width: 91%;
-          max-width: 59vw;
+          max-width: 1030px;
         }
       }
-      .circle-image{
-        width:53.125%;
-        height: 94.445%;
-        //@include square(1020px);
-      }
+      .circle-image{@include size(94.445%,53.125%);}
     }
     .cards{
       height:33.29vw;
