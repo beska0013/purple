@@ -82,8 +82,8 @@ header{
 main{
 .container{padding: 0 4.28vw;}
   .bg1{
-    //@include bg('./assets/img/bg1.png',cover);
-    background-color:#1A121D;
+    @include bg('./assets/img/bg1.png',cover);
+    //background-color:#1A121D;
     position: relative;
     left: unset!important;
     overflow: hidden;
