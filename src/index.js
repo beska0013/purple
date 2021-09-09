@@ -1,6 +1,8 @@
 
 
+gsap.registerPlugin(ScrollTrigger);
 
+const customEase = 'CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")'
 
 //--mob-menu animation--//
 
@@ -16,46 +18,70 @@ btnMobMenu.addEventListener('click', ()=>{
 function toggleClass(el,elStyle) {
     el.classList.toggle(elStyle)
 }
-function addleClass(el,elStyle) {
-    el.classList.add(elStyle)
-}
 //--add new bgColor class--//
-
+//--gsap fade animation func--//
+const fade = (el,start,end) => gsap.timeline(
+    {
+        scrollTrigger: {
+            trigger: el,
+            start: start,
+            end: end,
+            scrub: 1,
+        }
+    })
+//--gsap fade animation func--//
 //--setion one gsapAnimatiom image scroll--//
 
-const timeline = gsap.timeline(
+const secOne = gsap.timeline(
     {
-        // default:{duration: 10},
-        smoothChildTiming:true,
         scrollTrigger:{
             trigger: '.bg1',
             start:'top',
-            end:'bottom',
-            scrub: true,
+            end:'+=3000',
+            scrub: 1,
             pin: true,
-            animation: 'tween',
-            smoothChildTiming: true
-        }
+        },
+
     }
 )
 
-timeline
-    .to('.circle-scroll',{
-        scale:0.5,
-        opacity:0
-    },0.1)
+secOne
     .to('.circle-image',{
-        duration: 2.5,
+        duration:3.5,
         height:'100%',
-        width:'100%'
+        width:'100%',
+        ease: "power4.out"
     })
+    .to('.circle-scroll',{
+        scale:0.1,
+        opacity:0
+    },'<')
     .to('.circle-image',{
-        clipPath:' circle(80% at 31% 74%)',
-        width:'100%'
-    })
-    .to('.circle-image',{
-        clipPath:' circle(100% at 50% 74%)',
-    })
+        duration:5.5,
+        clipPath:'circle(108% at 24% 74%)',
+        ease: "power4.out"
+    },'<.5')
+    // .to('.circle-image',{
+    //     duration:2.5,
+    //     clipPath:'circle(72% at 24% 74%)',
+    //     ease: "power4.out"
+    // },'<.5')
+    // .to('.circle-image',{
+    //     duration:2.5,
+    //     clipPath:'circle(84% at 24% 74%)',
+    //     ease: "power4.out"
+    // },'<.5')
+    // .to('.circle-image',{
+    //     duration:2.5,
+    //     clipPath:'circle(94% at 24% 74%)',
+    //     ease: "power4.out"
+    // },'<.5')
+    // .to('.circle-image',{
+    //     duration:2.5,
+    //     clipPath:'circle(108% at 24% 74%)',
+    //     ease: "power4.out"
+    // },'<.5')
+
     .to('.pop-up__container',{
         y:-100,
         ease:'bounce.out',
@@ -70,4 +96,431 @@ timeline
 
 
 
-//--setion one gsapAnimatiom image scroll--//
+//--setion one gsapAnimatiom image scroll end--//
+
+//-- section two--//
+const secTwoSlider = gsap.timeline(
+    {
+        scrollTrigger:{
+            trigger:'#secTwo',
+            autoAlpha: 0,
+            scrub: 1,
+            animation: 'tween',
+            smoothChildTiming: true
+        }
+    }
+)
+secTwoSlider
+    .to('#firstRow ul', {x:'-1844px'},'start')
+    .to('#secondRow ul', {x: '0px'}, 'start')
+
+
+const secTwofadeIn = fade('#secTwo','top 30%','top -10%')
+secTwofadeIn
+    .set(['.left-circle','.right-circle'],{skewX:0,skewY:0})
+    .to('.left-circle',{
+        rotation: 313,
+        ease:'power4.out',
+    })
+    .to('.right-circle',{
+        rotation: 115,
+        ease:'power4.out',
+    },'<-.01')
+    .to(['.bg2 .title','.bg2 .cards .card'],{
+       y:0,
+       stagger:.05,
+       ease:'power4.out'
+    },'<-.5')
+
+
+//-- section two end--//
+
+
+
+//--section three memmory images animation--//
+const secThreeHeader = gsap.timeline(
+   {
+    smoothChildTiming:true,
+    scrollTrigger:{
+        trigger: '.bg3',
+        start:'top 80%',
+        end:'top',
+        scrub: true,
+        animation: 'tween',
+        smoothChildTiming: true
+    }
+})
+
+secThreeHeader.to('.bg3 .title', {y:'0%', scale:1})
+
+const secThree = gsap.timeline(
+    {
+        smoothChildTiming:true,
+        scrollTrigger:{
+            trigger: '.bg3',
+            start:'top',
+            end:'+=5000',
+            scrub: true,
+            pin: true,
+            animation: 'tween',
+            smoothChildTiming: true,
+        }
+    })
+
+secThree
+    .set('.memory-img img',{
+        x:'-50%',
+        y:'-50%',
+        scale: 0
+    })
+    .to('.m-img1',{
+        duration: .1,
+        x:'-100%',
+        y: '-30%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    })
+    .to('.m-img2',{
+        duration: .1,
+        x:'50%',
+        y: '20%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },">-0.09")
+    .to('.m-img3',{
+        duration: .1,
+        x:'350%',
+        y:'-80%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },">-0.09")
+    .to('.m-img4',{
+        duration: .1,
+        x:'320%',
+        y:'-250%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },">-0.09")
+    .to('.m-img5',{
+        duration: .1,
+        x:'-320%',
+        y:'-350%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },">-0.09")
+    .to('.m-img1',{
+        duration: .05,
+        x:'-200%',
+        y: '-0%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img2',{
+        duration: .05,
+        x:'125%',
+        y: '100%',
+        scale:1.5,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },"start")
+    .to('.m-img3',{
+        duration: .05,
+        x:'425%',
+        y:'-80%',
+        scale:1.1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img4',{
+        duration: .05,
+        x:'425%',
+        y:'-325%',
+        scale:2.5,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },"start")
+    .to('.m-img5',{
+        duration: .05,
+        x:'-380%',
+        y:'-410%',
+        scale:1.1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img6',{
+        duration: .05,
+        x:'-100%',
+        y:'0%',
+        scale:.4,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img7',{
+        duration: .05,
+        x:'-20%',
+        y:'-40%',
+        scale:.1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img8',{
+        duration: .05,
+        x:'-80%',
+        y:'-80%',
+        scale:.15,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'start')
+    .to('.m-img1',{
+        duration: .05,
+        x:'-230%',
+        y: '30%',
+        scale:1.1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'>')
+    .to('.m-img2',{
+        duration: .05,
+        x:'195%',
+        y: '170%',
+        scale:1.5,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },"<")
+    .to('.m-img4',{
+        duration: .05,
+        x:'535%',
+        y:'-435%',
+        scale:2.5,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },"<")
+    .to('.m-img6',{
+        duration: .05,
+        x:'-150%',
+        y:'75%',
+        scale:1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'>')
+    .to('.m-img7',{
+        duration: .05,
+        x:'25%',
+        y:'20%',
+        scale:.8,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'<')
+    .to('.m-img8',{
+        duration: .05,
+        x:'-125%',
+        y:'-110%',
+        scale:.5,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'<')
+    .to('.m-img9',{
+        duration: .05,
+        x:'-60%',
+        y:'-45%',
+        scale:.1,
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'<')
+    .to('.m-img10',{
+        duration: .05,
+        x:'20%',
+        y:'-85%',
+        scale:.3,
+
+        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+    },'<')
+//--section three memmory images animation end--//
+
+//--section four end--//
+const fadeInTl = fade('.bg4','top 60%','top 60%')
+fadeInTl
+    .set('.shadow',{
+        skewX: 0,
+        skewY: 0,
+    })
+    .to('.shadow',{
+    skewX: 0,
+    skewY: 0,
+    rotation: '1deg',
+    },"start")
+    .to('.img',{
+        opacity:1,
+        scale: 1,
+    },">")
+    .to(['#bg4Text',
+        '#bg4Text .content-title',
+        '#bg4Text .content-title span',
+        '#bg4Text .title','#bg4Text .title p','#bg4Text .btn'],{
+        y:0,
+        opacity:1,
+        stagger:.01,
+        ease:"expo.out" ,
+    },"<")
+    .to('#bg4Text .content-title span', {
+        width: '100%',
+    },"<")
+
+//--section four end--//
+
+ //--section five--//
+const fadeInTl2 =  fade('.bg5','top 80%', 'top')
+fadeInTl2
+    .to('.bg5 .quotes',{
+        scale:1,
+        rotation:'0deg',
+        opacity: 1,
+        ease:"power1.out"  ,
+    })
+    .to('.bg5 .slider-control',{
+        scale:1,
+        opacity: 1,
+        ease:"power1.out" ,
+    },"<")
+    .to('.bg5 .testimonials-content',{
+        y:0,
+        opacity: 1,
+  },"<")
+ //--section five end--//
+
+
+
+//--section six--//
+const fadeInTl3 = fade('.bg6','top 60%', 'top -30%')
+fadeInTl3
+    .set('.bg6 .content .circle-wrapper span',{skewX:0,skewY:0})
+    .set('.bg6 .content .header-quotes img',{skewX:0,skewY:0})
+    .to('.bg6 .content .circle-wrapper img',{
+        scale:1,
+        clipPath:'circle(50% at 50% 50%)',
+        opacity:1,
+        ease: 'power4.out'
+    })
+    .to('.bg6 .content .circle-wrapper span',{
+        skewX: 0,
+        skewY: 0,
+        rotation:'360deg',
+        opacity:1,
+        ease: 'power4.out'
+        },"<")
+    .to('.bg6 .content .header-quotes img',{
+        skewX:0,
+        skewY:0,
+        opacity:1,
+        rotation:'1deg',
+        ease: 'power4.out',
+    },"<")
+    .to(['.bg6 .content .content__title','.bg6 .content .content-text'],{
+        y:0,
+        opacity:1,
+        ease: 'power4.out',
+    },"<")
+//--section six end--//
+
+//--section seven--//
+const fadeInTl4 = fade('.bg7 .bg7-content','top 80%', 'top')
+
+fadeInTl4
+    .set(['.bg7-circle_left','.bg7-circle_right'],{skewX:0,skewY:0})
+    .to(['.bg7-circle_left','.bg7-circle_right'],{
+        skewX:0,
+        skewY:0,
+        rotation:'1deg',
+    })
+    .to(['.bg7-content','.bg7-content #bg7-title h2','.bg7-content #bg7-title p','.bg7-content .links'],{
+        y:0,
+        opacity:1,
+        stagger:.01,
+        ease: 'power4.out',
+    },"<")
+
+
+const fadeInTl5 = fade('.bg7 .bg7__show','top 100%', 'center')
+
+const secSevenTl = gsap.timeline(
+    {
+
+        smoothChildTiming:true,
+        scrollTrigger:{
+            trigger: '.bg7',
+            start:'top -100%',
+            end:'+=2000',
+            scrub: 1,
+            pin: true,
+            animation: 'tween',
+            smoothChildTiming: true
+        }
+    }
+)
+
+fadeInTl5
+    .set(['.bg7 .bg7__show .show .c-wrapper .main-c svg',
+        '.bg7 .bg7__show .show .c-wrapper .main-c p'],{skewX:0, skewY:0})
+    .to('.bg7 .bg7__show .show .c-wrapper .main-c svg',{
+        skewX:0,
+        skewY:0,
+        opacity:1,
+        scale:1,
+        rotation:'270deg',
+        strokeDashoffset: 0,
+        ease:'power4.out'
+    },'start')
+    .to('.bg7 .bg7__show .show .c-wrapper .main-c p',{
+        skewX:0,
+        skewY:0,
+        opacity:1,
+        rotation:'0deg',
+        ease:'power4.out'
+    },"<")
+    .to(['.bg7__show .title h2','.bg7__show .title p'],{
+        y:0,
+        stagger:.01,
+        ease: 'power4.out',
+    },"<")
+    .to(['.bg7__show .title h2','.bg7__show .title p'],{
+        opacity:1,
+        ease:'power4.out',
+    },">-.5")
+
+secSevenTl
+    .set('.bg7__show .t-wrapper',{skewX:0, skewY:0, rotation:'-90deg'})
+    .to('.bg7 .bg7__show .show .c-wrapper .main-c p',{
+        opacity:0,
+        ease:'power4.out'
+    },'start')
+    .to('#red-c',{y:'10%', ease:'power4.out' },'<')
+    .to('#blue-c',{x:'12%',y:'-1', ease:'power4.out'},'<')
+    .to('#yellow-c',{x:'-12%',y:'-1', ease:'power4.out'},'<')
+    .to('.bg7__show .t-wrapper',{
+        skewX:0,
+        skewY:0,
+        scale:1,
+        rotation:'0deg',
+        ease:'power4.out'
+    },'<')
+    .to('.bg7__show .t-wrapper svg g',{
+        opacity:1,
+        ease:'power4.out'
+    })
+
+//--section seven end--//
+
+//--footer--//
+const fadeInTl6 = fade('footer','top 30%', 'top 10%')
+
+fadeInTl6
+    .to('footer .footer',{
+        width:'100%',
+        opacity:1,
+    })
+    .to('footer .info .summary',{
+        y:0,
+        opacity:1
+    },"<")
+    .to('footer .info .contacts .footer-nav',{
+        y:0,
+        opacity:1
+    },"<.2")
+    .to('footer .info .contacts .email',{
+        y:0,
+        opacity:1
+    },"<.2")
+    .to('footer .info .contacts .subscription',{
+        y:0,
+        opacity:1
+    },"<.2")
+    .to('footer .info .contacts .subscription form',{
+     width:'100%',
+    },"<")
+//--footer--//
