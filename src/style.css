@@ -6,14 +6,9 @@
   user-select: none;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 html, body {
   line-height: 1.5;
   position: relative;
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
@@ -27,8 +22,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header, main, section, footer {
-  height: 100%;
-  width: 100%;
   max-width: 1920px;
 }
 
@@ -109,6 +102,8 @@ header {
   min-height: 70px;
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 5;
   padding: 0 4.28vw;
 }
@@ -351,7 +346,6 @@ main .carousel .carousel-items ul {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  transition: transform 0.01s ease-in-out;
 }
 main .carousel .carousel-items ul li {
   margin: 0 2.2rem;
@@ -497,8 +491,7 @@ main .bg3 .title {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.5s ease-in-out;
-  transform: translate(0, 100%) scale(0);
+  transform: translate(0, 100%) scale(0.4);
 }
 main .bg3 .title h2 {
   color: #ffffff;
@@ -516,32 +509,31 @@ main .bg3 .memory-img {
   top: 0;
 }
 main .bg3 .memory-img img {
-  transition: all 1s ease-in-out;
   position: absolute;
   top: 50%;
   left: 50%;
 }
-main .bg3 .memory-img .m-img1 {
+main .bg3 .memory-img .m-img1, main .bg3 .memory-img .m-img6 {
   height: 387px;
   width: 480px;
   z-index: 5;
 }
-main .bg3 .memory-img .m-img2 {
+main .bg3 .memory-img .m-img2, main .bg3 .memory-img .m-img7 {
   width: 384px;
   height: 384px;
   z-index: 4;
 }
-main .bg3 .memory-img .m-img3 {
+main .bg3 .memory-img .m-img3, main .bg3 .memory-img .m-img8 {
   height: 160px;
   width: 235px;
   z-index: 3;
 }
-main .bg3 .memory-img .m-img4 {
+main .bg3 .memory-img .m-img4, main .bg3 .memory-img .m-img10 {
   width: 193px;
   height: 193px;
   z-index: 2;
 }
-main .bg3 .memory-img .m-img5 {
+main .bg3 .memory-img .m-img5, main .bg3 .memory-img .m-img9 {
   height: 179px;
   width: 239px;
   z-index: 1;
@@ -947,7 +939,6 @@ main .bg7 .bg7-content .show .t-wrapper svg {
   height: 100%;
 }
 main .bg7 .bg7-content .show .t-wrapper svg g {
-  transition: opacity 0.01s ease-in-out;
   opacity: 0;
 }
 main .bg7 .bg7-content .show .c-wrapper {
@@ -1392,7 +1383,7 @@ footer .footer .social-links ul li a svg {
   main .cards {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height: 67vw;
     max-height: 639px;
@@ -1418,7 +1409,7 @@ footer .footer .social-links ul li a svg {
     justify-content: center;
     align-items: center;
     min-height: 100%;
-    min-width: 45%;
+    min-width: 40%;
     height: 100%;
     padding: 0;
   }
@@ -1848,12 +1839,12 @@ footer .footer .social-links ul li a svg {
   }
   main .cards {
     height: 33.29vw;
+    padding: 0 7rem;
   }
   main .cards .right-circle {
     right: 90%;
   }
   main .bg3 .memory-img img {
-    transition: all 1s ease-in-out;
     position: absolute;
     top: 50%;
     left: 50%;

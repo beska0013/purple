@@ -15,6 +15,9 @@
   @else if $spacing == around{
     justify-content: space-around;
   }
+  @else if $spacing == even{
+    justify-content: space-evenly;
+  }
   @else if $spacing == center{
     justify-content:center;
   }

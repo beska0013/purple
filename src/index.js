@@ -1,8 +1,17 @@
 
-
 gsap.registerPlugin(ScrollTrigger);
 
-const customEase = 'CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")'
+//--prevent scrollToTop on refresh--//
+window.onbeforeunload = function(e) {
+    sessionStorage.setItem('scrollpos', window.scrollY.toString());
+};
+document.addEventListener("DOMContentLoaded", function(event) {
+    let scrollpos = parseInt(sessionStorage.getItem('scrollpos'))
+    if (scrollpos) window.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos')
+});
+//--prevent scrollToTop on refresh--//
+
 
 //--mob-menu animation--//
 
@@ -20,25 +29,25 @@ function toggleClass(el,elStyle) {
 }
 //--add new bgColor class--//
 //--gsap fade animation func--//
-const fade = (el,start,end) => gsap.timeline(
+const fade = (el,start,end, scrub) => gsap.timeline(
     {
         scrollTrigger: {
             trigger: el,
             start: start,
             end: end,
-            scrub: 1,
+            scrub:scrub,
         }
     })
 //--gsap fade animation func--//
-//--setion one gsapAnimatiom image scroll--//
 
+//--setion one gsapAnimatiom image scroll--//
 const secOne = gsap.timeline(
     {
         scrollTrigger:{
             trigger: '.bg1',
             start:'top',
             end:'+=2000',
-            scrub: 1,
+            scrub: 1.5,
             pin: true,
         },
 
@@ -61,18 +70,10 @@ secOne
         ease: "power4.out"
     },'<.5')
     .to('.pop-up__container',{
-        duration:1.5,
-        y:'-50px',
-        ease: "power4.out"
-        })
-    .to('.pop-up__container',{
-        duration:.5,
-        y:0,
-        ease:"power4.out"
-    })
-    .to('header',{
-        top:'-94px'
-    }, '+=1')
+        duration:3.5,
+        y:'0px',
+        ease:'elastic.out(1,1)'
+        },'>-70%')
 //--setion one gsapAnimatiom image scroll end--//
 
 //-- section two--//
@@ -80,30 +81,35 @@ const secTwoSlider = gsap.timeline(
     {
         scrollTrigger:{
             trigger:'#secTwo',
-            scrub: 1.5,
+            start: "top 100%",
+            end: "+=5000",
+            scrub: 2,
         }
     }
 )
 secTwoSlider
-    .to('#firstRow ul', {x:'-1844px',duration:2.5},'start')
-    .to('#secondRow ul', {x: '0px', duration:2.5}, 'start')
+    .to('#firstRow ul', {x:'-1844px'})
+    .to('#secondRow ul', {x: '0px'}, '<')
 
 
-const secTwofadeIn = fade('#secTwo','top 30%','top -10%')
+const secTwofadeIn = fade('#secTwo','top 30%','top -10%',1)
 secTwofadeIn
     .set(['.left-circle','.right-circle'],{skewX:0,skewY:0})
     .to('.left-circle',{
+        duration:2.5,
         rotation: 313,
-        ease:'power4.out',
+        ease:'power1.out',
     })
     .to('.right-circle',{
+        duration:2.5,
         rotation: 115,
-        ease:'power4.out',
+        ease:'power1.out',
     },'<-.01')
     .to(['.bg2 .title','.bg2 .cards .card'],{
+       duration:2.5,
        y:0,
-       stagger:.05,
-       ease:'power4.out'
+       stagger:.1,
+       ease:'power1.out'
     },'<-.5')
 
 
@@ -114,14 +120,11 @@ secTwofadeIn
 //--section three memmory images animation--//
 const secThreeHeader = gsap.timeline(
    {
-    smoothChildTiming:true,
     scrollTrigger:{
         trigger: '.bg3',
         start:'top 80%',
         end:'top',
-        scrub: true,
-        animation: 'tween',
-        smoothChildTiming: true
+        scrub: 2,
     }
 })
 
@@ -129,15 +132,12 @@ secThreeHeader.to('.bg3 .title', {y:'0%', scale:1})
 
 const secThree = gsap.timeline(
     {
-        smoothChildTiming:true,
         scrollTrigger:{
             trigger: '.bg3',
             start:'top',
-            end:'+=5000',
-            scrub: true,
+            end:'+=1500',
+            scrub: 3,
             pin: true,
-            animation: 'tween',
-            smoothChildTiming: true,
         }
     })
 
@@ -148,162 +148,162 @@ secThree
         scale: 0
     })
     .to('.m-img1',{
-        duration: .1,
+        duration: .5,
         x:'-100%',
         y: '-30%',
-        scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        scale: .9,
+        ease:'power1.out',
     })
     .to('.m-img2',{
-        duration: .1,
+        duration:.5,
         x:'50%',
         y: '20%',
         scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },">-0.09")
+        ease:'power1.out',
+    },"<5%")
     .to('.m-img3',{
-        duration: .1,
+        duration: .5,
         x:'350%',
         y:'-80%',
         scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },">-0.09")
+        ease:'power1.out',
+    },"<5%")
     .to('.m-img4',{
-        duration: .1,
+        duration:.5,
         x:'320%',
         y:'-250%',
         scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },">-0.09")
+        ease:'power1.out',
+    },"<5%")
     .to('.m-img5',{
-        duration: .1,
+        duration:.5,
         x:'-320%',
         y:'-350%',
         scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },">-0.09")
+        ease:'power1.out',
+    },"<5%")
+
     .to('.m-img1',{
-        duration: .05,
+        duration: .3,
         x:'-200%',
         y: '-0%',
         scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        ease:'power1.out',
+    },'>')
     .to('.m-img2',{
-        duration: .05,
+        duration: .3,
         x:'125%',
         y: '100%',
         scale:1.5,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },"start")
+        ease:'power1.out',
+    },"<")
     .to('.m-img3',{
-        duration: .05,
+        duration: .3,
         x:'425%',
         y:'-80%',
         scale:1.1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        ease:'power1.out',
+    },'<')
     .to('.m-img4',{
-        duration: .05,
+        duration: .3,
         x:'425%',
         y:'-325%',
         scale:2.5,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },"start")
+        ease:'power1.out',
+    },"<")
     .to('.m-img5',{
-        duration: .05,
+        duration: .3,
         x:'-380%',
         y:'-410%',
         scale:1.1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        ease:'power1.out',
+    },'<')
+
     .to('.m-img6',{
-        duration: .05,
-        x:'-100%',
+        duration: .5,
+        x:'-140%',
         y:'0%',
-        scale:.4,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        scale:.5,
+        ease:'power1.out',
+    },'<')
     .to('.m-img7',{
-        duration: .05,
+        duration: .5,
         x:'-20%',
         y:'-40%',
-        scale:.1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        scale:.2,
+        ease:'power1.out',
+    },'<')
     .to('.m-img8',{
-        duration: .05,
-        x:'-80%',
-        y:'-80%',
-        scale:.15,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'start')
+        duration: .5,
+        x:'-145%',
+        y:'-160%',
+        scale:.5,
+        ease:'power1.out',
+    },'<')
+
     .to('.m-img1',{
-        duration: .05,
+        duration: .3,
         x:'-230%',
         y: '30%',
         scale:1.1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        ease:'power1.out',
     },'>')
     .to('.m-img2',{
-        duration: .05,
+        duration: .3,
         x:'195%',
         y: '170%',
         scale:1.5,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        ease:'power1.out',
     },"<")
     .to('.m-img4',{
-        duration: .05,
+        duration: .3,
         x:'535%',
         y:'-435%',
         scale:2.5,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        ease:'power1.out',
     },"<")
+
     .to('.m-img6',{
-        duration: .05,
-        x:'-150%',
-        y:'75%',
-        scale:1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
-    },'>')
+        duration: .5,
+        x:'-200%',
+        y:'150%',
+        scale:2,
+        ease:'power1.out',
+    },'<')
     .to('.m-img7',{
-        duration: .05,
-        x:'25%',
-        y:'20%',
-        scale:.8,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        duration: .5,
+        x:'100%',
+        y:'75%',
+        scale:1.5,
+        ease:'power1.out',
     },'<')
     .to('.m-img8',{
-        duration: .05,
-        x:'-125%',
-        y:'-110%',
-        scale:.5,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        duration: .5,
+        x:'-360%',
+        y:'-290%',
+        scale:2,
+        ease:'power1.out',
     },'<')
     .to('.m-img9',{
-        duration: .05,
-        x:'-60%',
-        y:'-45%',
-        scale:.1,
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        duration: .5,
+        x:'-120%',
+        y:'-30%',
+        scale:.7,
+        ease:'power1.out',
     },'<')
     .to('.m-img10',{
-        duration: .05,
-        x:'20%',
-        y:'-85%',
-        scale:.3,
-
-        ease:' CustomEase.create("custom", "M0,0 C0.084,0.61 0.119,0.621 0.158,0.69 0.198,0.762 0.374,1 1,1 ")',
+        duration: .5,
+        x:'200%',
+        y:'-200%',
+        scale:1,
+        ease:'power1.out',
     },'<')
 //--section three memmory images animation end--//
 
 //--section four end--//
-const fadeInTl = fade('.bg4','top 60%','top 60%')
+const fadeInTl = fade('.bg4','top 60%','top 60%',1)
 fadeInTl
-    .set('.shadow',{
-        skewX: 0,
-        skewY: 0,
-    })
+    .set('.shadow',{skewX: 0, skewY: 0})
     .to('.shadow',{
     skewX: 0,
     skewY: 0,
@@ -329,7 +329,7 @@ fadeInTl
 //--section four end--//
 
  //--section five--//
-const fadeInTl2 =  fade('.bg5','top 80%', 'top')
+const fadeInTl2 =  fade('.bg5','top 80%', 'top',1)
 fadeInTl2
     .to('.bg5 .quotes',{
         scale:1,
@@ -351,7 +351,7 @@ fadeInTl2
 
 
 //--section six--//
-const fadeInTl3 = fade('.bg6','top 60%', 'top -30%')
+const fadeInTl3 = fade('.bg6','top 60%', 'top -30%',1)
 fadeInTl3
     .set('.bg6 .content .circle-wrapper span',{skewX:0,skewY:0})
     .set('.bg6 .content .header-quotes img',{skewX:0,skewY:0})
@@ -383,7 +383,7 @@ fadeInTl3
 //--section six end--//
 
 //--section seven--//
-const fadeInTl4 = fade('.bg7 .bg7-content','top 80%', 'top')
+const fadeInTl4 = fade('.bg7 .bg7-content','top 80%', 'top',1)
 
 fadeInTl4
     .set(['.bg7-circle_left','.bg7-circle_right'],{skewX:0,skewY:0})
@@ -400,20 +400,16 @@ fadeInTl4
     },"<")
 
 
-const fadeInTl5 = fade('.bg7 .bg7__show','top 100%', 'center')
+const fadeInTl5 = fade('.bg7 .bg7__show','top 80%', '+=1500',2)
 
-const secSevenTl = gsap.timeline(
+ gsap.timeline(
     {
-
-        smoothChildTiming:true,
         scrollTrigger:{
             trigger: '.bg7',
             start:'top -100%',
-            end:'+=2000',
+            end:'+=1500',
             scrub: 1,
             pin: true,
-            animation: 'tween',
-            smoothChildTiming: true
         }
     }
 )
@@ -421,7 +417,11 @@ const secSevenTl = gsap.timeline(
 fadeInTl5
     .set(['.bg7 .bg7__show .show .c-wrapper .main-c svg',
         '.bg7 .bg7__show .show .c-wrapper .main-c p'],{skewX:0, skewY:0})
+
+    .set('.bg7__show .t-wrapper',{skewX:0, skewY:0, rotation:'-90deg'})
+
     .to('.bg7 .bg7__show .show .c-wrapper .main-c svg',{
+        duration: 2.5,
         skewX:0,
         skewY:0,
         opacity:1,
@@ -429,7 +429,7 @@ fadeInTl5
         rotation:'270deg',
         strokeDashoffset: 0,
         ease:'power4.out'
-    },'start')
+    })
     .to('.bg7 .bg7__show .show .c-wrapper .main-c p',{
         skewX:0,
         skewY:0,
@@ -447,34 +447,34 @@ fadeInTl5
         ease:'power4.out',
     },">-.5")
 
-secSevenTl
-    .set('.bg7__show .t-wrapper',{skewX:0, skewY:0, rotation:'-90deg'})
     .to('.bg7 .bg7__show .show .c-wrapper .main-c p',{
         opacity:0,
-        ease:'power4.out'
-    },'start')
-    .to('#red-c',{y:'10%', ease:'power4.out' },'<')
-    .to('#blue-c',{x:'12%',y:'-1', ease:'power4.out'},'<')
-    .to('#yellow-c',{x:'-12%',y:'-1', ease:'power4.out'},'<')
+        ease:'power4.out'})
+    .to('#red-c',{y:'10%', duration: 2.5, ease:'power4.out' },'<')
+    .to('#blue-c',{x:'12%',y:'-1', duration: 2.5, ease:'power4.out'},'<')
+    .to('#yellow-c',{x:'-12%',y:'-1', duration: 2.5, ease:'power4.out'},'<')
     .to('.bg7__show .t-wrapper',{
+        duration: 1.5,
         skewX:0,
         skewY:0,
         scale:1,
         rotation:'0deg',
-        ease:'power4.out'
+        ease:'power1.out'
     },'<')
     .to('.bg7__show .t-wrapper svg g',{
+        duration: 1,
         opacity:1,
         ease:'power4.out'
-    })
+    },'>25%')
 
 //--section seven end--//
 
 //--footer--//
-const fadeInTl6 = fade('footer','top 30%', 'top 10%')
+const fadeInTl6 = fade('footer','top 30%', 'top 10%',2)
 
 fadeInTl6
     .to('footer .footer',{
+        duration:1.5,
         width:'100%',
         opacity:1,
     })
