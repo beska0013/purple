@@ -41,39 +41,56 @@ const fade = (el,start,end, scrub) => gsap.timeline(
 //--gsap fade animation func--//
 
 //--setion one gsapAnimatiom image scroll--//
-const secOne = gsap.timeline(
+const secOneTl = gsap.timeline(
     {
         scrollTrigger:{
             trigger: '.bg1',
             start:'top',
-            end:'+=2000',
+            end:'+=1500',
             scrub: 1.5,
             pin: true,
         },
-
     }
 )
-secOne
-    .to('.circle-image',{
-        duration:3.5,
-        height:'100%',
-        width:'100%',
+const secOne = document.querySelector('.bg1')
+const circle =  document.querySelector('.circle-image')
+const procentageValue = 100;
+const cWidth =  (circle.clientWidth / secOne.clientWidth)* procentageValue;
+const cHeight = (circle.clientHeight / secOne.clientHeight)* procentageValue;
+
+
+secOneTl
+    .set('header',{top:'0%'})
+    .to('.circle-scroll',{
+        duration:1.5,
+        scale:0.1,
+        opacity:0,
         ease: "power4.out"
     })
-    .to('.circle-scroll',{
-        scale:0.1,
-        opacity:0
-    },'<')
+    .fromTo('.circle-image',
+        {
+        height: `${cHeight}%`,
+        width: `${cWidth}%`,
+        },
+        {
+            duration:3.5,
+            height:'101%',
+            width:'100%',
+            ease: "power4.out"
+        },'<')
     .to('.circle-image',{
         duration:5.5,
         clipPath:'circle(108% at 24% 74%)',
         ease: "power4.out"
-    },'<.5')
+    },'>-60%')
     .to('.pop-up__container',{
         duration:3.5,
         y:'0px',
-        ease:'elastic.out(1,1)'
+        ease:'elastic.out(1,1)',
         },'>-70%')
+    .fromTo('header',{top:'0%'},{top:'-100%'},'>-20%')
+    .to('header',{position:'absolute'})
+
 //--setion one gsapAnimatiom image scroll end--//
 
 //-- section two--//

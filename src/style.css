@@ -22,6 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header, main, section, footer {
+  width: 100%;
   max-width: 1920px;
 }
 
@@ -97,12 +98,11 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  transition: top 0.1s ease-in-out;
+  transition: top 0.3s ease-in-out;
   height: 70px;
   min-height: 70px;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 5;
   padding: 0 4.28vw;
@@ -164,6 +164,9 @@ header nav .nav-bar ul li a {
   transition: color 0.3s ease-in-out;
 }
 
+main {
+  position: relative;
+}
 main .container {
   padding: 0 4.28vw;
 }
@@ -228,7 +231,7 @@ main .bg1 .circle-image {
   background-position: 50% 0;
   position: absolute;
   overflow: hidden;
-  clip-path: circle(62% at 24% 74%);
+  clip-path: circle(62% at 24% 83%);
   bottom: 0;
   left: 0;
 }
@@ -1834,7 +1837,7 @@ footer .footer .social-links ul li a svg {
     max-width: 1030px;
   }
   main .bg1 .circle-image {
-    height: 94.445%;
+    height: 100%;
     width: 53.125%;
   }
   main .cards {
