@@ -26,14 +26,14 @@ body{
 }
 
 
+
 header{
   @include flex(center);
-  @include  transition(top,.1s);
+  @include  transition(top, .3s);
   height: 70px;
   min-height: 70px;
   position: fixed;
   top: 0;
-  left:0;
   width: 100%;
   z-index: 5;
   padding: 0 4.28vw;
@@ -77,8 +77,9 @@ header{
     }
   }
 }
-
 main{
+  position:relative;
+
 .container{padding: 0 4.28vw;}
   .bg1{
     @include bg('./assets/img/bg1.png',cover);
@@ -124,7 +125,7 @@ main{
       background-position: 50% 0;
       position: absolute;
       overflow: hidden;
-      clip-path: circle(62% at 24% 74%);
+      clip-path: circle(62% at 24% 83%);
       bottom:0;
       left:0;
       .circle-image__overlay{
@@ -1433,7 +1434,7 @@ footer{
           max-width: 1030px;
         }
       }
-      .circle-image{@include size(94.445%,53.125%);}
+      .circle-image{@include size(100%,53.125%);}
     }
     .cards{
       height:33.29vw;
