@@ -164,6 +164,13 @@ header nav .nav-bar ul li a {
   transition: color 0.3s ease-in-out;
 }
 
+.bg1, .bg3, .bg5, .bg6, footer {
+  height: 100vh;
+  width: 100%;
+  max-height: 812px;
+  max-width: 100%;
+}
+
 main {
   position: relative;
 }
@@ -180,8 +187,6 @@ main .bg1 {
   position: relative;
   left: unset !important;
   overflow: hidden;
-  height: 812px;
-  max-height: 1920px;
 }
 main .bg1 .circles-container {
   position: absolute;
@@ -194,7 +199,7 @@ main .bg1 .circles-container .circles {
   border-radius: 50%;
   border: 2px solid #653375;
   position: relative;
-  animation: circles-rotate 12s linear infinite;
+  animation: circles-rotate 16s linear infinite;
 }
 main .bg1 .circles-container .circles .sub__circle {
   width: 246px;
@@ -481,8 +486,6 @@ main .cards .card .card-content .btn__transperent {
   border: 2px solid #ffffffc7;
 }
 main .bg3 {
-  height: 812px;
-  width: 100%;
   position: relative;
   background-color: #1A121D;
   padding: 50px 0 0 0;
@@ -553,7 +556,6 @@ main .bg4 #bg4Text .content-title,
 main .bg4 #bg4Text .title,
 main .bg4 #bg4Text .title p,
 main .bg4 #bg4Text .btn {
-  transition: all 1s ease-in-out;
   transform: translate(0, 30px);
   opacity: 0;
 }
@@ -562,7 +564,6 @@ main .bg4 .content {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease-in-out;
   margin: 38px 0 0 0;
   width: 100%;
 }
@@ -571,7 +572,6 @@ main .bg4 .content .content-title {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease-in-out;
   width: 100%;
   margin: 0 0 0.5rem 0;
 }
@@ -584,13 +584,9 @@ main .bg4 .content .content-title h3 {
 }
 main .bg4 .content .content-title span {
   content: "";
-  transition: all 0.8s ease-in-out;
   height: 2px;
   width: 0%;
   background-color: #1A121D;
-}
-main .bg4 .content .title {
-  transition: all 1s ease-in-out;
 }
 main .bg4 .content .title h2 {
   font-size: 24px;
@@ -611,11 +607,9 @@ main .bg4 .content .img-wrapper {
   box-shadow: 2px 0 0 0 #9614bb47;
 }
 main .bg4 .content .img-wrapper .shadow {
-  transition: transform 0.8s ease-in-out;
   transform: rotate(180deg) skew(0, 0);
 }
 main .bg4 .content .img-wrapper .img {
-  transition: all 1s ease-in-out;
   opacity: 0;
   transform: scale(0.8);
 }
@@ -626,7 +620,6 @@ main .bg4 .content .img-wrapper img {
   position: absolute;
 }
 main .bg4 .content .btn {
-  transition: all 1s ease-in-out;
   width: 100%;
   color: #ffffffc7;
 }
@@ -635,8 +628,6 @@ main .bg4 .content__center {
 }
 main .bg5 {
   background-color: #F4F4F4;
-  height: 812px;
-  width: 100%;
 }
 main .bg5 .testimonials {
   width: 100%;
@@ -756,8 +747,6 @@ main .bg6 {
   -o-background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
-  height: 812px;
-  width: 100%;
   background-color: #FFFFFF;
   padding: 5rem 4.28vw;
 }
@@ -776,6 +765,12 @@ main .bg6 .content .circle-wrapper img {
   max-height: 306px;
   min-width: 230px;
   min-height: 230px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.05s ease-in-out;
+  opacity: 0;
+  transform: scale(0.8);
+  clip-path: circle(40% at 50% 50%);
 }
 main .bg6 .content .circle-wrapper span {
   width: 56vw;
@@ -791,6 +786,7 @@ main .bg6 .content .circle-wrapper span {
   transform: rotate(15deg);
   left: 40px;
   bottom: 0;
+  z-index: 1;
 }
 main .bg6 .content .header-quotes {
   width: 100%;
@@ -1014,8 +1010,6 @@ main .bg7 .bg7-content .links .btn__transperent {
 }
 
 footer {
-  height: 812px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1359,9 +1353,11 @@ footer .footer .social-links ul li a svg {
     height: 104px;
   }
 
-  main .bg1 {
-    height: 1024px;
+  .bg1, .bg3, .bg5, footer {
+    max-height: 1024px;
+    max-width: 100%;
   }
+
   main .bg1 .bg1__text h1 {
     max-width: 1070px;
   }
@@ -1431,8 +1427,6 @@ footer .footer .social-links ul li a svg {
     max-height: 70px;
   }
   main .bg3 {
-    height: 1080px;
-    width: 100%;
     padding: 5rem 0 0 0;
   }
   main .bg3 .title {
@@ -1454,9 +1448,6 @@ footer .footer .social-links ul li a svg {
     max-width: 794px;
     max-height: 794px;
   }
-  main .bg5 {
-    height: 1024px;
-  }
   main .bg5 .testimonials .testimonials-content {
     margin: 0;
   }
@@ -1475,6 +1466,7 @@ footer .footer .social-links ul li a svg {
   }
   main .bg6 {
     height: 1080px;
+    max-height: 1080px;
   }
   main .bg6 .content .circle-wrapper span {
     transition: all 0.05s ease-in-out;
@@ -1482,12 +1474,6 @@ footer .footer .social-links ul li a svg {
     left: 10px;
     bottom: -20px;
     opacity: 0;
-  }
-  main .bg6 .content .circle-wrapper img {
-    transition: all 0.05s ease-in-out;
-    opacity: 0;
-    transform: scale(0.8);
-    clip-path: circle(40% at 50% 50%);
   }
   main .bg6 .content .header-quotes {
     transition: all 0.3s ease-in-out;
@@ -1595,15 +1581,25 @@ footer .footer .social-links ul li a svg {
   }
 }
 @media screen and (min-width: 1150px) {
-  main .bg1 {
-    height: 1080px;
+  .bg1, .bg3, .bg5, footer {
+    max-height: 1080px;
+    max-width: 100%;
   }
+
   main .bg1 .bg1__text {
     position: relative;
     z-index: 1;
   }
   main .bg1 .bg1__text h1 {
     font-size: 6vw;
+  }
+  main .bg1 .circle-scroll {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start;
+    transform: translate(58.34vw, 22.8vw);
   }
   main .bg1 .circles-container .circles {
     width: 575px;
@@ -1614,8 +1610,6 @@ footer .footer .social-links ul li a svg {
     height: 374px;
   }
   main .bg3 {
-    height: 1080px;
-    width: 100%;
     padding: 6.4rem 0 0 0;
   }
   main .bg4 {
@@ -1697,6 +1691,9 @@ footer .footer .social-links ul li a svg {
   }
   main .bg1 .bg1__text h1 span {
     letter-spacing: 0;
+  }
+  main .bg1 .circle-scroll {
+    transform: translate(58.34vw, 11vw);
   }
   main .bg1 .circles-container {
     right: -160px !important;
@@ -1818,11 +1815,7 @@ footer .footer .social-links ul li a svg {
     max-width: 1083px;
   }
   main .bg1 .circle-scroll {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-items: flex-start;
+    transform: translate(58.34vw, 7.8vw);
   }
   main .bg1 .circles-container .circles {
     width: 575px;

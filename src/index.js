@@ -109,7 +109,7 @@ secTwoSlider
     .to('#secondRow ul', {x: '0px'}, '<')
 
 
-const secTwofadeIn = fade('#secTwo','top 30%','top -10%',1)
+const secTwofadeIn = fade('#secTwo','top 80%','top -10%',1)
 secTwofadeIn
     .set(['.left-circle','.right-circle'],{skewX:0,skewY:0})
     .to('.left-circle',{
@@ -199,7 +199,6 @@ secThree
         scale:1,
         ease:'power1.out',
     },"<5%")
-
     .to('.m-img1',{
         duration: .3,
         x:'-200%',
@@ -235,7 +234,6 @@ secThree
         scale:1.1,
         ease:'power1.out',
     },'<')
-
     .to('.m-img6',{
         duration: .5,
         x:'-140%',
@@ -257,7 +255,6 @@ secThree
         scale:.5,
         ease:'power1.out',
     },'<')
-
     .to('.m-img1',{
         duration: .3,
         x:'-230%',
@@ -279,7 +276,6 @@ secThree
         scale:2.5,
         ease:'power1.out',
     },"<")
-
     .to('.m-img6',{
         duration: .5,
         x:'-200%',
@@ -318,30 +314,34 @@ secThree
 //--section three memmory images animation end--//
 
 //--section four end--//
-const fadeInTl = fade('.bg4','top 60%','top 60%',1)
+const fadeInTl = fade('.bg4','top 50%','top ',1)
 fadeInTl
     .set('.shadow',{skewX: 0, skewY: 0})
-    .to('.shadow',{
-    skewX: 0,
-    skewY: 0,
-    rotation: '1deg',
-    },"start")
-    .to('.img',{
-        opacity:1,
-        scale: 1,
-    },">")
     .to(['#bg4Text',
         '#bg4Text .content-title',
         '#bg4Text .content-title span',
         '#bg4Text .title','#bg4Text .title p','#bg4Text .btn'],{
+        duration: 5.5,
         y:0,
         opacity:1,
         stagger:.01,
         ease:"expo.out" ,
-    },"<")
+    })
     .to('#bg4Text .content-title span', {
         width: '100%',
     },"<")
+    .to('.shadow',{
+    duration: 5.5,
+    skewX: 0,
+    skewY: 0,
+    rotation: '1deg',
+    },">")
+    .to('.img',{
+        duration:2.5,
+        opacity:1,
+        scale: 1,
+    },">")
+
 
 //--section four end--//
 
@@ -370,7 +370,7 @@ fadeInTl2
 //--section six--//
 const fadeInTl3 = fade('.bg6','top 60%', 'top -30%',1)
 fadeInTl3
-    .set('.bg6 .content .circle-wrapper span',{skewX:0,skewY:0})
+    .set('.bg6 .content .circle-wrapper span',{skewX:0,skewY:0,rotation:'180deg'})
     .set('.bg6 .content .header-quotes img',{skewX:0,skewY:0})
     .to('.bg6 .content .circle-wrapper img',{
         scale:1,

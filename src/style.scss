@@ -77,6 +77,11 @@ header{
     }
   }
 }
+
+.bg1,.bg3,.bg5,.bg6,footer{
+  @include size(100vh,100%);
+  @include max-size(812px,100%);
+}
 main{
   position:relative;
 
@@ -86,8 +91,6 @@ main{
     position: relative;
     left: unset!important;
     overflow: hidden;
-    height: 812px;
-    max-height: 1920px;
     .circles-container{
       position: absolute;
       top: -132px;
@@ -97,7 +100,7 @@ main{
         border-radius: 50%;
         border: 2px solid #653375;
         position: relative;
-        animation: circles-rotate 12s linear infinite;
+        animation: circles-rotate 16s linear infinite;
         .sub__circle{
           @include square(246px);
           border-radius: 50%;
@@ -315,7 +318,6 @@ main{
 
   }
   .bg3{
-    @include size(812px,100%);
     position: relative;
     background-color:#1A121D;
     padding: 50px 0 0 0;
@@ -373,19 +375,16 @@ main{
       .title,
       .title p,
       .btn{
-        @include transition(all, 1s);
         transform: translate(0,30px);
         opacity:0;
       }
     }
     .content{
       @include flex(center,column);
-      @include transition(all, 1s);
       margin: 38px 0 0 0;
       width: 100%;
       .content-title{
         @include flex(center,column);
-        @include transition(all, 1s);
         width: 100%;
         margin: 0 0 .5rem 0;
         h3{
@@ -394,13 +393,11 @@ main{
         }
         span{
           content: '';
-          @include transition(all, .8s);
           @include size(2px,0%);
           background-color:#1A121D;
         }
       }
       .title{
-        @include transition(all, 1s);
         h2{font-size: 24px;}
         p{margin: 1rem 0;}
       }
@@ -411,12 +408,8 @@ main{
         border-radius: 50%;
         -webkit-box-shadow:2px 0 0 0 #9614bb47;
         box-shadow: 2px 0 0 0 #9614bb47;
-        .shadow{
-          @include transition(transform, .8s);
-          transform: rotate(180deg) skew(0, 0);
-        }
+        .shadow{transform: rotate(180deg) skew(0, 0);}
         .img{
-          @include transition(all, 1s);
           opacity:0;
           transform: scale(.8);
         };
@@ -427,7 +420,6 @@ main{
         }
       }
      .btn{
-       @include transition(all, 1s);
        width:100%;
        color:#ffffffc7;
      }
@@ -436,7 +428,6 @@ main{
   }
   .bg5{
     background-color:#F4F4F4;
-    @include size(812px,100%);
     .testimonials{
       @include square(100%);
       @include flex(center);
@@ -515,7 +506,6 @@ main{
   }
   .bg6{
     @include bg('./assets/img/bg6.png',cover);
-    @include size(812px,100%);
     background-color: #FFFFFF;
     padding: 5rem 4.28vw;
     .content{
@@ -528,6 +518,12 @@ main{
           @include square(61.2vw);
           @include max-square(306px);
           @include min-square(230px);
+          position: relative;
+          z-index: 2;
+          transition: all 0.05s ease-in-out;
+          opacity: 0;
+          transform: scale(0.8);
+          clip-path: circle(40% at 50% 50%);
         }
         span{
           @include square(56vw);
@@ -540,6 +536,7 @@ main{
           transform: rotate(15deg);
           left:40px;
           bottom:0;
+          z-index:1;
         }
       }
       .header-quotes{
@@ -733,7 +730,6 @@ main{
 }
 
 footer{
-  @include size(812px,100%);
   @include flex(between,column);
   @include bg('./assets/img/footerBG.png',cover);
   padding: 6.5rem 4.28vw 0 4.28vw;
@@ -822,7 +818,6 @@ footer{
     }
   }
 }
-
 
 .btn{
   @include size(40px,132px);
@@ -1005,12 +1000,12 @@ footer{
 }
 
 @media screen and (min-width: 768px){
-  header {
-    height: 104px;
+  header {height: 104px;}
+  .bg1,.bg3,.bg5,footer{
+    @include max-size(1024px,100%);
   }
   main{
     .bg1 {
-      height: 1024px;
       .bg1__text h1 {
         max-width: 1070px;
       }
@@ -1066,7 +1061,6 @@ footer{
       }
     }
     .bg3{
-      @include size(1080px,100%);
       padding: 5rem 0 0 0;
       .title{
         @include flex(center,column);
@@ -1086,7 +1080,6 @@ footer{
       }
     }
     .bg5{
-      height: 1024px;
       .testimonials{
         .testimonials-content{
           margin: 0;
@@ -1114,6 +1107,7 @@ footer{
     }
     .bg6{
       height:1080px;
+      max-height:1080px;
       .content{
         .circle-wrapper{
           span{
@@ -1123,12 +1117,12 @@ footer{
             bottom: -20px;
             opacity:0;
           }
-          img{
-            @include transition(all, .05s);
-            opacity:0;
-            transform: scale(0.8);
-            clip-path:circle(40% at 50% 50%);
-          }
+          //img{
+          //  @include transition(all, .05s);
+          //  opacity:0;
+          //  transform: scale(0.8);
+          //  clip-path:circle(40% at 50% 50%);
+          //}
         }
         .header-quotes{
           @include transition(all, .3s);
@@ -1218,15 +1212,22 @@ footer{
 }
 
 @media screen and (min-width:1150px){
+  .bg1,.bg3,.bg5,footer{
+    @include max-size(1080px,100%);
+  }
   main{
     .bg1{
-      height: 1080px;
       .bg1__text{
         position: relative;
         z-index: 1;
         h1{
           font-size: 6vw;
         }
+      }
+      .circle-scroll{
+        @include  flex(center);
+        align-items:flex-start;
+        transform: translate(58.34vw, 22.8vw);
       }
       .circles-container{
         .circles{
@@ -1238,7 +1239,7 @@ footer{
       }
     }
     .bg3{
-      @include size(1080px,100%);
+      //@include size(1080px,100%);
       padding: 6.4rem 0 0 0;
     }
     .bg4{
@@ -1311,14 +1312,12 @@ footer{
           span{letter-spacing: 0}
         }
       }
-      .circles-container{
-        right: -160px!important;
-      }
+      .circle-scroll{ transform: translate(58.34vw, 11vw);}
+      .circles-container{ right: -160px!important;}
       .pop-up__container{
         @include flex(end);
         bottom: -4px;
         padding: 0 6.3vw;
-
         .pop-up{
           width: 91%;
           max-width: 1130px;
@@ -1335,12 +1334,8 @@ footer{
       }
     }
     .title{
-      h2{
-        font-size: 40px;
-      }
-      p{
-        @include font('Montserrat',30px,400,#000000);
-      }
+      h2{font-size: 40px;}
+      p{@include font('Montserrat',30px,400,#000000);}
     }
     .carousel{
       padding: 5rem 4.28vw;
@@ -1415,11 +1410,7 @@ footer{
           max-width: 1083px;
         }
       }
-      .circle-scroll{
-        @include  flex(center);
-        align-items:flex-start;
-
-      }
+      .circle-scroll{ transform: translate(58.34vw, 7.8vw);}
       .circles-container{
         .circles{
           @include square(575px);
