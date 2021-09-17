@@ -417,14 +417,20 @@ fadeInTl4
     },"<")
 
 
-const fadeInTl5 = fade('.bg7 .bg7__show','top 80%', '+=1500',2)
+const fadeInTl5 = fade('.bg7__show','top 80%', '+=1500',2)
 
- gsap.timeline(
+const bg7Height = document.querySelector('.bg7').clientHeight;
+const showHeight = document.querySelector('.bg7__show').clientHeight;
+
+const bg7SscrollValue = bg7Height - showHeight
+
+
+gsap.timeline(
     {
         scrollTrigger:{
             trigger: '.bg7',
-            start:'top -100%',
-            end:'+=1500',
+            start: `${bg7SscrollValue}`,
+            end:'+=950',
             scrub: 1,
             pin: true,
         }

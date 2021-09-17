@@ -84,7 +84,7 @@ header{
 }
 main{
   position:relative;
-
+  background-color: #ffffff;
 .container{padding: 0 4.28vw;}
   .bg1{
     @include bg('./assets/img/bg1.png',cover);
@@ -115,7 +115,7 @@ main{
       @include flex(center);
       margin: 7rem  0;
       position: relative;
-      z-index: 1;
+      z-index: 3;
       h1{
         font-size:9vw;
         font-weight: 800;
@@ -124,13 +124,15 @@ main{
     }
     .circle-image{
       @include square(357px);
-      @include bg('./assets/img/img_1.png',cover);
+      //@include bg('./assets/img/img_1.png',cover);
+      @include bg('./assets/img/9652064-preview.gif',cover);
       background-position: 50% 0;
       position: absolute;
       overflow: hidden;
       clip-path: circle(62% at 24% 83%);
       bottom:0;
       left:0;
+      z-index: 2;
       .circle-image__overlay{
         position:absolute;
         @include square(100%);
@@ -143,7 +145,10 @@ main{
       display: none;
       border-radius: 50%;
       border: 2px solid #5F356D;
-      transform: translate(58.34vw, 7.8vw);
+      position:absolute;
+      left: 60%;
+      bottom: 5%;
+      z-index: 1;
       .sub-circle-scroll{
         @include square(91%);
         @include  flex(center,column);
@@ -165,6 +170,7 @@ main{
       width: 100%;
       left: 0;
       bottom: 76px;
+      z-index: 4;
       transform: translate(0, 500px);
       .title {
         width: 85vw;
@@ -221,9 +227,11 @@ main{
         @include flex(start);
         li{
           margin: 0 2.2rem;
+          cursor:pointer;
           img{
             @include size(5.71vw,21vw);
             @include max-size(50px,182px);
+            @include transition(filter,.3s);
             -webkit-filter: grayscale(100%);
             filter: grayscale(100%);
           }
@@ -232,6 +240,11 @@ main{
               @include size(5.71vw,28vw);
               @include max-size(50px,250px);
             }
+          }
+          &:hover img{
+            @include transition(filter,.3s);
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
           }
         }
       }
@@ -585,16 +598,15 @@ main{
     }
   }
   .bg7{
-    @include size(1140px,100%);
+    @include size(1220px,100%);
     @include bg('./assets/img/bg7.png',cover);
     @include flex(between,column);
     overflow: hidden;
     position:relative;
-    padding: 6.5rem 4.28vw 2rem 4.28vw;
+    padding: 0 4.28vw;
     .bg7-circle_left,.bg7-circle_right{position:absolute;}
     .bg7-circle_right{
       @include square(410px);
-
       transform: rotate(180deg) skew(0, 0);
       border-radius: 50%;
       box-shadow: -2px 0 0 0 #9614bb47;
@@ -610,9 +622,9 @@ main{
       top: 10%;
     }
     .bg7__show{
-     justify-content: space-between!important;
+     justify-content: space-around!important;
       height:100%;
-      margin: 8.5rem 0 0 0;
+      padding: 0!important;
       .title{
         h2{
           opacity: 0;
@@ -633,6 +645,7 @@ main{
       @include transition(all, .01s);
       opacity: 0;
       transform:translate(0,100px);
+      padding: 6.28rem 0 2rem 0;
        .show{
          position:relative;
          @include size(273px,309px);
@@ -918,11 +931,7 @@ footer{
     .bg1{
       .bg1__text{
         margin: 7rem  0;
-        position: relative;
-        z-index: 1;
-        h1{
-          font-size: 6vw;
-        }
+        h1{font-size: 6vw;}
       }
       .circles-container{
         top: -170px;
@@ -948,12 +957,8 @@ footer{
       }
     }
     .title{
-      h2{
-        font-size: 30px;
-      }
-      p{
-        font-size: 20px;
-      }
+      h2{font-size: 30px;}
+      p{font-size: 20px;}
     }
     .carousel{
       h4{
@@ -995,6 +1000,10 @@ footer{
         }
 
       }
+    }
+    .bg7 {
+      .title p{font-size: 14px;}
+      .title h2{font-size: 20px;}
     }
   }
 }
@@ -1117,12 +1126,6 @@ footer{
             bottom: -20px;
             opacity:0;
           }
-          //img{
-          //  @include transition(all, .05s);
-          //  opacity:0;
-          //  transform: scale(0.8);
-          //  clip-path:circle(40% at 50% 50%);
-          //}
         }
         .header-quotes{
           @include transition(all, .3s);
@@ -1140,8 +1143,8 @@ footer{
       }
     }
     .bg7{
-      height: 2036px;
-      padding: 20rem 4.28vw 5rem 4.28vw;
+      height: 2048px;
+      //padding: 20rem 4.28vw 5rem 4.28vw;
       .bg7-circle_right{
         @include square(482px);
         box-shadow: -4px 0 0 0 #9614bb47;
@@ -1154,8 +1157,11 @@ footer{
         left: -50%;
         top: 25%;
       }
-      .bg7__show{margin: 25rem 0 0 0;}
+      //.bg7__show{
+      //  //margin: 25rem 0 0 0;
+      //}
       .bg7-content{
+        padding: 20rem 0 5rem 0;
         .show{
           @include size(551px,585px);
           .t-wrapper{@include square(350px);}
@@ -1179,12 +1185,11 @@ footer{
             margin: 0;
           }
         }
-
       }
     }
   }
   footer{
-    height:1024px;
+    //height:1024px;
     h6{font-size:20px}
     a,p{font-size:16px;}
     .info{
@@ -1219,15 +1224,11 @@ footer{
     .bg1{
       .bg1__text{
         position: relative;
-        z-index: 1;
-        h1{
-          font-size: 6vw;
-        }
+        h1{ font-size: 6vw;}
       }
       .circle-scroll{
         @include  flex(center);
         align-items:flex-start;
-        transform: translate(58.34vw, 22.8vw);
       }
       .circles-container{
         .circles{
@@ -1238,10 +1239,7 @@ footer{
         }
       }
     }
-    .bg3{
-      //@include size(1080px,100%);
-      padding: 6.4rem 0 0 0;
-    }
+    .bg3{padding: 6.4rem 0 0 0;}
     .bg4{
       @include flex(between);
       padding: 6.4rem 4.28vw 3.5rem 4.28vw;
@@ -1312,7 +1310,6 @@ footer{
           span{letter-spacing: 0}
         }
       }
-      .circle-scroll{ transform: translate(58.34vw, 11vw);}
       .circles-container{ right: -160px!important;}
       .pop-up__container{
         @include flex(end);
@@ -1396,9 +1393,7 @@ footer{
       }
     }
   }
-  .btn{
-    font-size: 18px!important;
-  }
+  .btn{font-size: 18px!important;}
 }
 
 @media screen and (min-width:1920px){
@@ -1410,7 +1405,6 @@ footer{
           max-width: 1083px;
         }
       }
-      .circle-scroll{ transform: translate(58.34vw, 7.8vw);}
       .circles-container{
         .circles{
           @include square(575px);
@@ -1523,14 +1517,12 @@ footer{
       }
     }
     .bg7{
-      padding: 24rem 4.28vw 20rem 4.28vw;
       .bg7-circle_right{
         right: -35%;
         top: 25%;
       }
       .bg7__show{
         flex-direction:row!important;
-        align-items: flex-end!important;
         .title{
           margin:0;
           text-align: left;
@@ -1563,7 +1555,6 @@ footer{
           }
         }
         .links{width:560px;}
-
       }
     }
   }
