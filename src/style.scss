@@ -24,6 +24,7 @@ body{
 video{
 @include square(100%);
   object-fit: cover;
+  position: absolute;
 }
 
 
