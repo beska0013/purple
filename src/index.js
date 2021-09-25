@@ -1,4 +1,7 @@
 
+document.querySelector('video').playbackRate = 0.8;
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 //--prevent scrollToTop on refresh--//
@@ -424,6 +427,7 @@ const showHeight = document.querySelector('.bg7__show').clientHeight;
 
 const bg7SscrollValue = bg7Height - showHeight
 
+// console.log(bg7SscrollValue);
 
 gsap.timeline(
     {
@@ -521,3 +525,6 @@ fadeInTl6
      width:'100%',
     },"<")
 //--footer--//
+
+
+

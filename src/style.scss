@@ -9,10 +9,7 @@ h1,h2,h3,h4,h5,h6{
     display: inline-block;
   }
 }
-.test{
-  height:5000px;
-  width:100%;
-}
+
 .nav-bar_mob-open{
   clip-path: circle(100% at 50% 50%)!important;
   @include transition(all,.3s);
@@ -23,6 +20,10 @@ h1,h2,h3,h4,h5,h6{
 body{
   @include flex(center,column);
   background-color: #e4c6ec61;
+}
+video{
+@include square(100%);
+  object-fit: cover;
 }
 
 
@@ -78,9 +79,13 @@ header{
   }
 }
 
-.bg1,.bg3,.bg5,.bg6,footer{
+.bg1,.bg3,.bg5{
   @include size(100vh,100%);
   @include max-size(812px,100%);
+}
+.bg6,footer{
+
+  @include size(812px,100%);
 }
 main{
   position:relative;
@@ -124,8 +129,7 @@ main{
     }
     .circle-image{
       @include square(357px);
-      //@include bg('./assets/img/img_1.png',cover);
-      @include bg('./assets/img/9652064-preview.gif',cover);
+      //@include bg('./assets/img/9652064-preview.gif',cover);
       background-position: 50% 0;
       position: absolute;
       overflow: hidden;
@@ -173,7 +177,7 @@ main{
       z-index: 4;
       transform: translate(0, 500px);
       .title {
-        width: 85vw;
+        width: 100%;
         min-width: 287px;
         text-align: left;
       }
@@ -185,6 +189,7 @@ main{
         .pop-up__buttons{
           @include flex(between);
           margin: 1rem 0 0 0;
+          width: 100%;
           max-width: 510px;
         }
       }
@@ -194,7 +199,7 @@ main{
   .title{
     position: relative;
     width:100%;
-    min-width: 287px;
+    min-width: 275px;
     text-align: center;
     z-index: 2;
     h2{
@@ -913,8 +918,44 @@ footer{
 
 
 //--media querry--//
+@media screen and (max-width:375px){
+  main {
+    .title{
+      p{
+        font-size: 14px;
+      }
+    }
+    .bg6 {
+      .content {
+        .content__title {
+          .title {
+            flex-direction: column;
+            h2 {
+              width:100%;
+              font-size: 32px;
+            }
+          }
+        }
+      }
+    }
+    .bg7 {
+        .bg7-content {
+          .title {
+            h2 {
+              width:100%;
+              font-size: 18px;
+            }
+          }
+        }
 
+    }
+  }
+}
 @media screen and (min-width:376px){
+  .bg6,footer{
+    @include size(100vh,100%);
+    @include max-size(812px,100%);
+  }
   .btn{
     @include size(6.64vw, 19.68vw);
     @include font('Montserrat-bold',16px,700,#ffffff);
@@ -944,11 +985,9 @@ footer{
         }
       }
       .pop-up__container{
-
         .pop-up__buttons{
           @include flex(between);
           margin: 1rem 0 0 0;
-          max-width: 510px;
           .btn{
             @include size(60px,50%);
             margin: 0 .5rem 0 0;
@@ -985,7 +1024,7 @@ footer{
           }
           .btn{
             width: 100%;
-            max-width: 253px;
+            max-width: 260px;
             a {font-size: 16px;}
           }
         }
@@ -1019,7 +1058,7 @@ footer{
         max-width: 1070px;
       }
       .circle-image{
-        @include square(663px);
+        @include square(50vw);
       }
     }
     .carousel{
@@ -1035,11 +1074,11 @@ footer{
     }
     .cards{
       @include flex(even);
-      height: 67vw;
+      height: 40vw;
       max-height:639px;
       margin: 100px 0;
       .bg-circle{
-        @include square(100vw);
+        @include square(70vw);
         @include max-square(1180px);
         border: 5px solid transparent;
       }
@@ -1050,12 +1089,17 @@ footer{
       .right-circle{right: 90%}
       .card{
         @include flex(center,column);
-        @include min-size(100%,40%);
-        height:100%;
+        @include min-size(340px,40%);
+        @include size(100%,47%);
+        max-width: 690px;
         padding: 0;
         .card-content{
+          .card-img{
+            @include square(12vw);
+          }
           .card-title{
             width: 100%;
+            margin: 20px 0;
             h6{font-size: 1.5625vw;}
             p{
               font-size: 1.04167vw;
@@ -1063,8 +1107,11 @@ footer{
             }
           }
           .btn__transperent{
-            height:70px;
+            @include size(12%,60%);
             max-height: 70px;
+            a{
+              font-size:1vw;
+            }
           }
         }
       }
@@ -1093,14 +1140,14 @@ footer{
         .testimonials-content{
           margin: 0;
           .title{
-            h2{font-size:40px;}
+            h2{font-size: 2.5vw;}
           }
           .slider{
             .slider-items{
               ul {
                 li{
                   p{
-                    font-size:20px;
+                    font-size: 1.8vw;
                     width: 75%;
                   }
                   .avatar{
@@ -1144,7 +1191,6 @@ footer{
     }
     .bg7{
       height: 2048px;
-      //padding: 20rem 4.28vw 5rem 4.28vw;
       .bg7-circle_right{
         @include square(482px);
         box-shadow: -4px 0 0 0 #9614bb47;
@@ -1157,9 +1203,6 @@ footer{
         left: -50%;
         top: 25%;
       }
-      //.bg7__show{
-      //  //margin: 25rem 0 0 0;
-      //}
       .bg7-content{
         padding: 20rem 0 5rem 0;
         .show{
@@ -1189,7 +1232,6 @@ footer{
     }
   }
   footer{
-    //height:1024px;
     h6{font-size:20px}
     a,p{font-size:16px;}
     .info{
@@ -1217,24 +1259,19 @@ footer{
 }
 
 @media screen and (min-width:1150px){
-  .bg1,.bg3,.bg5,footer{
-    @include max-size(1080px,100%);
-  }
+  .bg1,.bg3,.bg5,footer{ @include max-size(1080px,100%);}
   main{
     .bg1{
       .bg1__text{
-        position: relative;
         h1{ font-size: 6vw;}
-      }
-      .circle-scroll{
-        @include  flex(center);
-        align-items:flex-start;
       }
       .circles-container{
         .circles{
-          @include square(575px);
+          @include square(40vw);
+          @include max-square(575px);
           .sub__circle{
-            @include square(374px);
+            @include square(30vw);
+            @include max-square(374px);
           }
         }
       }
@@ -1246,7 +1283,7 @@ footer{
       .content{
         align-items: flex-start;
         .img-wrapper{
-          @include square(50vw);
+          @include square(41.5vw);
           align-self: flex-end;
         }
         .content-title{
@@ -1254,8 +1291,8 @@ footer{
         }
         .title{
           text-align: left;
-          h2{font-size:45px}
-          p{font-size:26px}
+          h2{font-size: 2.5vw}
+          p{font-size: 1.3vw}
         }
       }
 
@@ -1263,12 +1300,13 @@ footer{
   }
 }
 
-@media screen and (min-width:1330px){
-  .btn-mob_menu {
-    display: none
-  }
+@media screen and (min-width:1200px){
+  .btn-mob_menu { display: none}
   header{
     nav{
+      .logo{
+        @include size(2.8163vw,10.582vw);
+      }
       .nav-bar{
         @include square (max-content);
         align-items: center!important;
@@ -1290,7 +1328,7 @@ footer{
               display:none;
             }
             a{
-              @include font('Montserrat',16px,400,#ffffff);
+              @include font('Montserrat',1vw,400,#ffffff);
               line-height: 1.5;
               letter-spacing: 1px;
             }
@@ -1299,16 +1337,23 @@ footer{
       }
     }
   }
+
   main {
     .bg1{
       .bg1__text {
         justify-content: flex-end;
         letter-spacing: 1px;
-        margin: 13.5rem 0 0 0;
+        margin: 11vw 0 0 0;
         h1 {
-          font-size: 80px;
+          font-size: 4vw;
+          width: 61%;
+          max-width: 1083px;
           span{letter-spacing: 0}
         }
+      }
+      .circle-scroll{
+        @include  flex(center);
+        align-items:flex-start;
       }
       .circles-container{ right: -160px!important;}
       .pop-up__container{
@@ -1316,14 +1361,15 @@ footer{
         bottom: -4px;
         padding: 0 6.3vw;
         .pop-up{
-          width: 91%;
+          width: 62%;
           max-width: 1130px;
           .pop-up__buttons{
             @include flex(between);
             margin: 1rem 0 0 0;
-            max-width: 510px;
+            width: 60%;
             .btn{
-              @include size(60px,50%);
+              @include size(3vw,50%);
+              @include max-size(60px,50%);
               margin: 0 .5rem 0 0;
             }
           }
@@ -1331,43 +1377,132 @@ footer{
       }
     }
     .title{
-      h2{font-size: 40px;}
-      p{@include font('Montserrat',30px,400,#000000);}
+      h2{font-size: 2.1vw;}
+      p{@include font('Montserrat',1.5vw,400,#000000);}
     }
     .carousel{
       padding: 5rem 4.28vw;
       h4{
         margin: 3rem 0;
-        font-size: 30px;
+        font-size: 1.5vw;
       }
     }
+    .cards{
+      height:33.29vw;
+      padding:0 7rem;
+      .card{
+        .card-content{
+          height: 100%;
+        }
+      }
+    }
+   .bg5 .testimonials  {
+     .quotes{
+       @include size(20.25vw,24vw);
+     }
+
+    }
     .bg6{
+      height: 100vh;
+      max-height: 1080px;
       @include flex(between);
       .content{
+        max-width: 827px;
         .circle-wrapper{
-          img{@include max-square(480px);}
-          span{@include max-square(522px);}
+          img{
+          @include max-square(480px);
+          @include square(24.2vw);
+        }
+          span{
+            @include max-square(522px);
+            @include square(27.2vw);
+          }
+        }
+        .header-quotes img{
+          @include max-size(70px,80px);
+          @include size(3.6vw,4.1vw);
+        }
+       .content__title .title{
+         h2 {
+           font-size: 5.2vw;
+           width: 35%;
+         }
+         p{
+           font-size: 2.3vw;
+         }
+       }
+       .content-text p {
+         font-size: 1.35vw;
         }
       }
     }
     .bg7{
-      height: 2160px;
+      height: 200vh;
+      max-height: 2160px;
       .bg7-circle_right{
-        @include square(1174px);
-        right: -65%;
-        top: 16%;
+        @include square(60vw);
+        @include max-square(1174px);
+        right: -35%;
+        top: 25%;
         box-shadow: -6px 0 0 0 #9614bb47;
       }
       .bg7-circle_left{
-        @include square(892px);
+        @include square(45.6vw);
+        @include max-square(892px);
         box-shadow: 6px 0 0 0 #9614bb47;
         left: -30%;
         top: -10%;
       }
+     .bg7-content{
+       padding: 20rem 0 0 0;
+       width: 100%;
+      .title{
+        h2 {
+          font-size: 4.167vw;
+        }
+        p{
+          font-size: 1.563vw;
+        }
+      }
+
+    }
+     .bg7__show {
+        flex-direction: row !important;
+       .show{
+         @include max-size(637px,720px);
+         @include size(33.2vw, 37.5vw);
+         .c-wrapper .main-c {
+           @include max-square(320px);
+           @include square(16.7vw!important);
+         }
+         .t-wrapper{
+           @include square(20vw);
+           @include max-square(380px);
+         }
+       }
+       .title{
+         margin:0;
+         text-align: left;
+         align-items: flex-start!important;
+         width: 42.3vw;
+         max-width: 812px;
+         h2{
+           font-size: 2.35vw !important;
+         }
+         p, .purple_color{
+           font-size: 1.3542vw!important;
+         }
+       }
+      }
+
     }
   }
+
   footer{
-    h6{margin:0 0 1rem 0;}
+    h6{
+     font-size: 1.5vw;
+      margin:0 0 1rem 0;
+    }
     .info{
       @include flex(between);
       align-items:flex-start;
@@ -1393,16 +1528,24 @@ footer{
       }
     }
   }
-  .btn{font-size: 18px!important;}
+
+  .btn{
+    @include size(4.64vw,12.68vw);
+    font-size: 18px;
+  }
 }
 
 @media screen and (min-width:1920px){
+  header nav .nav-bar ul li a {
+    font-size: 18px;
+  }
   main{
     .bg1{
       .bg1__text{
+        margin: 13.5rem 0 0 0;
         h1{
+          width: 64%;
           font-size: 80px;
-          max-width: 1083px;
         }
       }
       .circles-container{
@@ -1415,16 +1558,35 @@ footer{
       }
       .pop-up__container{
         .pop-up{
-          width: 91%;
-          max-width: 1030px;
+          width: 64%;
+          max-width: 1045px;
         }
       }
-      .circle-image{@include size(100%,53.125%);}
+      .circle-image{
+        @include size(100%,53.125%);
+      }
+    }
+    .title{
+      h2{font-size: 40px;}
+      p{@include font('Montserrat',30px,400,#000000);}
+    }
+    .carousel{
+      h4{
+        font-size: 30px;
+      }
     }
     .cards{
-      height:33.29vw;
-      padding:0 7rem;
       .right-circle{right: 90%}
+      .card{
+        .card-content{
+          .btn__transperent{
+            @include size(16%,60%);
+            a{
+              font-size: 18px;
+            }
+          }
+        }
+      }
     }
     .bg3{
       .memory-img{
@@ -1481,7 +1643,6 @@ footer{
           padding: 0 5rem;
           .title{
             h2{font-size:46px;}
-
           }
           .slider{
             .slider-items{
@@ -1504,7 +1665,6 @@ footer{
     }
     .bg6{
       .content{
-        max-width: 827px;
         .content__title{
           .title{
             h2{font-size: 100px;}
@@ -1522,12 +1682,7 @@ footer{
         top: 25%;
       }
       .bg7__show{
-        flex-direction:row!important;
         .title{
-          margin:0;
-          text-align: left;
-          width: 812px;
-          align-items: flex-start!important;
           h2{
             font-size: 45px!important;
             margin-bottom: 3rem!important;
@@ -1538,14 +1693,6 @@ footer{
         }
       }
       .bg7-content{
-        width: 100%;
-        .show{
-          @include size(637px,720px);
-          .t-wrapper{@include square(380px);}
-          .c-wrapper{
-            .main-c{@include square(320px);}
-          }
-        }
         .title{
           @include flex(center,column);
           h2{font-size: 80px;}
