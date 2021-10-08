@@ -130,7 +130,6 @@ main{
     }
     .circle-image{
       @include square(357px);
-      //@include bg('./assets/img/9652064-preview.gif',cover);
       background-position: 50% 0;
       position: absolute;
       overflow: hidden;
@@ -952,6 +951,7 @@ footer{
     }
   }
 }
+
 @media screen and (min-width:376px){
   .bg6,footer{
     @include size(100vh,100%);

@@ -1,5 +1,5 @@
 
-document.querySelector('video').playbackRate = 0.8;
+// document.querySelector('video').playbackRate = 0.8;
 
 
 gsap.registerPlugin(ScrollTrigger);
